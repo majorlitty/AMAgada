@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState } from "react";
 import { Menu, Play, ArrowUpRight, Heart, Smile, Sparkles, Grid, ChevronLeft, ChevronRight, ArrowRight, X, BookOpen, Users, GraduationCap, Twitter, Instagram, Linkedin } from "lucide-react";
-import { animate, useInView } from "motion/react";
+import { motion, animate, useInView } from "motion/react";
 
 function AnimatedCounter({ from, to, duration = 2 }: { from: number, to: number, duration?: number }) {
   const nodeRef = useRef<HTMLSpanElement>(null);
@@ -131,26 +131,46 @@ export default function Home() {
         {/* Hero Copy */}
         <section className="text-center max-w-4xl mx-auto mb-5 px-4 flex flex-col items-center">
           
-          <div className="flex items-center gap-2 bg-[#fdf5f4] border border-[#f3dcdb] px-3 py-1.5 rounded-full mb-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="flex items-center gap-2 bg-[#fdf5f4] border border-[#f3dcdb] px-3 py-1.5 rounded-full mb-4"
+          >
             <Sparkles className="w-3.5 h-3.5 text-[#eb5e43]" />
             <span className="text-[#eb5e43] text-[13px] font-medium tracking-wide">Social fundraising</span>
-          </div>
+          </motion.div>
 
-          <h1 className="font-serif text-5xl md:text-6xl lg:text-[4.2rem] leading-[1.05] text-[#111] font-normal tracking-[-0.035em] mb-4">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="font-serif text-5xl md:text-6xl lg:text-[4.2rem] leading-[1.05] text-[#111] font-normal tracking-[-0.035em] mb-4"
+          >
             Great futures are built <br className="hidden md:block" /> with <span className="text-[#eb5e43]">basic education</span>
-          </h1>
+          </motion.h1>
           
-          <p className="text-gray-500 text-[15px] md:text-[1.05rem] max-w-2xl mx-auto leading-relaxed mb-6">
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="text-gray-500 text-[15px] md:text-[1.05rem] max-w-2xl mx-auto leading-relaxed mb-6"
+          >
             The AMAgada foundation is dedicated to providing quality <br className="hidden md:block" />
             basic education to underprivileged children across Nigeria
-          </p>
+          </motion.p>
           
-          <button className="bg-[#1f1f1f] text-white p-1.5 pr-6 rounded-[0.8rem] font-medium text-[15px] flex items-center gap-3 hover:bg-[#2a2a2a] transition-colors shadow-lg">
+          <motion.button 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="bg-[#1f1f1f] text-white p-1.5 pr-6 rounded-[0.8rem] font-medium text-[15px] flex items-center gap-3 hover:bg-[#2a2a2a] transition-colors shadow-lg"
+          >
             <div className="w-9 h-9 rounded-[0.5rem] bg-gradient-to-br from-[#ff8c73] to-[#eb5e43] flex items-center justify-center">
               <Grid className="w-4 h-4 text-white stroke-[2.5]" />
             </div>
             Make a Donation
-          </button>
+          </motion.button>
         </section>
 
         {/* Uniform Grid - Hypesonic style Slider */}
