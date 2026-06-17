@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState } from "react";
 import { Menu, Play, ArrowUpRight, Heart, Smile, Sparkles, Grid, ChevronLeft, ChevronRight, ArrowRight, X, BookOpen, Users, GraduationCap, Twitter, Instagram, Linkedin } from "lucide-react";
-import { motion, animate, useInView } from "motion/react";
+import { motion, animate, useInView, AnimatePresence } from "motion/react";
 
 function AnimatedCounter({ from, to, duration = 2 }: { from: number, to: number, duration?: number }) {
   const nodeRef = useRef<HTMLSpanElement>(null);
@@ -30,6 +30,7 @@ export default function Home() {
   const [showNav, setShowNav] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isVolunteerModalOpen, setIsVolunteerModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -99,6 +100,12 @@ export default function Home() {
         </nav>
 
         <div className="flex items-center gap-4 relative z-50">
+          <button 
+            onClick={() => setIsVolunteerModalOpen(true)}
+            className="hidden lg:block text-gray-900 border border-gray-200 px-5 py-2.5 rounded-[0.5rem] font-medium text-[14px] hover:bg-gray-100 transition-colors shadow-sm"
+          >
+            Volunteer
+          </button>
           <button className="hidden sm:block bg-[#1f1f1f] text-white px-5 py-2.5 rounded-[0.5rem] font-medium text-[14px] hover:bg-black transition-colors shadow-sm">
             Donate now
           </button>
@@ -123,6 +130,12 @@ export default function Home() {
             <button className="mt-4 bg-[#1f1f1f] text-white px-8 py-3.5 rounded-[0.5rem] font-medium text-[16px] w-auto shadow-sm" onClick={() => setIsMobileMenuOpen(false)}>
               Donate now
             </button>
+            <button 
+              className="text-gray-900 border border-gray-300 px-8 py-3.5 rounded-[0.5rem] font-medium text-[16px] w-auto shadow-sm bg-white hover:bg-gray-50 transition-colors" 
+              onClick={() => { setIsMobileMenuOpen(false); setIsVolunteerModalOpen(true); }}
+            >
+              Volunteer
+            </button>
           </div>
         </div>
       </header>
@@ -132,9 +145,9 @@ export default function Home() {
         <section className="text-center max-w-4xl mx-auto mb-5 px-4 flex flex-col items-center">
           
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, y: 30, filter: "blur(8px)", scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center gap-2 bg-[#fdf5f4] border border-[#f3dcdb] px-3 py-1.5 rounded-full mb-4"
           >
             <Sparkles className="w-3.5 h-3.5 text-[#eb5e43]" />
@@ -142,18 +155,18 @@ export default function Home() {
           </motion.div>
 
           <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, y: 30, filter: "blur(8px)", scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="font-serif text-5xl md:text-6xl lg:text-[4.2rem] leading-[1.05] text-[#111] font-normal tracking-[-0.035em] mb-4"
           >
             Great futures are built <br className="hidden md:block" /> with <span className="text-[#eb5e43]">basic education</span>
           </motion.h1>
           
           <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, y: 30, filter: "blur(8px)", scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="text-gray-500 text-[15px] md:text-[1.05rem] max-w-2xl mx-auto leading-relaxed mb-6"
           >
             The AMAgada foundation is dedicated to providing quality <br className="hidden md:block" />
@@ -161,9 +174,9 @@ export default function Home() {
           </motion.p>
           
           <motion.button 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, y: 30, filter: "blur(8px)", scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="bg-[#1f1f1f] text-white p-1.5 pr-6 rounded-[0.8rem] font-medium text-[15px] flex items-center gap-3 hover:bg-[#2a2a2a] transition-colors shadow-lg"
           >
             <div className="w-9 h-9 rounded-[0.5rem] bg-gradient-to-br from-[#ff8c73] to-[#eb5e43] flex items-center justify-center">
@@ -175,10 +188,10 @@ export default function Home() {
 
         {/* Uniform Grid - Hypesonic style Slider */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 40, filter: "blur(8px)", scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="relative w-full mt-4 group/slider"
         >
           <button 
@@ -227,10 +240,10 @@ export default function Home() {
 
         {/* Trusted By Logos */}
         <motion.section 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 40, filter: "blur(8px)", scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           className="mt-16 md:mt-20 flex flex-col items-center opacity-70"
         >
           <p className="text-[10px] md:text-[11px] font-sans tracking-[0.2em] text-gray-500 uppercase mb-6 md:mb-8 text-center px-4">
@@ -257,10 +270,10 @@ export default function Home() {
 
         {/* About Us Section */}
         <motion.section className="my-16 lg:my-0 w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center px-4 md:px-0 lg:h-screen lg:max-h-[850px] lg:min-h-[650px]"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 40, filter: "blur(8px)", scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           
           {/* Left Column */}
@@ -305,10 +318,10 @@ export default function Home() {
 
         {/* Impact Goals Section */}
         <motion.section 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 40, filter: "blur(8px)", scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="mb-24 w-full max-w-7xl mx-auto px-4 md:px-0"
         >
           <div className="flex flex-col items-center mb-12">
@@ -362,10 +375,10 @@ export default function Home() {
 
         {/* Projects Section */}
         <motion.section 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 40, filter: "blur(8px)", scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="mb-24 w-full max-w-7xl mx-auto px-4 md:px-0"
         >
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 pt-10 border-t border-gray-100">
@@ -464,10 +477,10 @@ export default function Home() {
 
         {/* Call to Action Section */}
         <motion.section 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 40, filter: "blur(8px)", scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="mb-24 w-full max-w-7xl mx-auto px-4 md:px-0"
         >
           <div className="relative w-full h-[500px] md:h-[600px] rounded-[2rem] md:rounded-[3rem] overflow-hidden">
@@ -517,10 +530,10 @@ export default function Home() {
 
       {/* Footer */}
       <motion.footer 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 40, filter: "blur(8px)", scale: 0.98 }}
+        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
         viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="w-full bg-[#fffcfb] border-t border-[#f3dcdb]/40 pt-16 pb-8 px-4 md:px-0 mt-auto"
       >
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12 lg:gap-24">
@@ -583,6 +596,73 @@ export default function Home() {
           </div>
         </div>
       </motion.footer>
+
+      {/* Volunteer Modal */}
+      <AnimatePresence>
+        {isVolunteerModalOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#111]/40 backdrop-blur-[4px]"
+          >
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300, duration: 0.6 }}
+              className="bg-white rounded-[1.5rem] w-full max-w-lg overflow-hidden shadow-2xl relative"
+            >
+              <button 
+                onClick={() => setIsVolunteerModalOpen(false)}
+                className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-800 hover:bg-gray-100 rounded-full transition-colors z-10"
+              >
+                <X size={20} />
+              </button>
+              
+              <div className="p-8 md:p-10">
+                <div className="inline-flex items-center gap-2 bg-[#fdf5f4] border border-[#f3dcdb] px-3 py-1.5 rounded-full mb-6">
+                  <Heart className="w-3.5 h-3.5 text-[#eb5e43]" />
+                  <span className="text-[#eb5e43] text-[13px] font-semibold tracking-wide">Join Our Mission</span>
+                </div>
+                <h3 className="font-serif text-3xl text-[#111] font-normal mb-3 leading-tight tracking-tight">Become a <br/>Volunteer</h3>
+                <p className="text-gray-500 font-sans text-[15px] mb-8 leading-[1.65]">
+                  Engage with your community and make a real impact. Fill out the form below and our team will get in touch.
+                </p>
+                
+                <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); setIsVolunteerModalOpen(false); }}>
+                  <div className="space-y-1.5">
+                    <label htmlFor="name" className="text-[13px] font-semibold text-[#111] ml-1">Full Name</label>
+                    <input type="text" id="name" required className="w-full bg-white border border-gray-200 rounded-[0.8rem] px-4 py-3 text-[15px] focus:outline-none focus:ring-2 focus:ring-[#eb5e43]/20 focus:border-[#eb5e43] transition-all shadow-sm" placeholder="Jane Doe" />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label htmlFor="email" className="text-[13px] font-semibold text-[#111] ml-1">Email Address</label>
+                    <input type="email" id="email" required className="w-full bg-white border border-gray-200 rounded-[0.8rem] px-4 py-3 text-[15px] focus:outline-none focus:ring-2 focus:ring-[#eb5e43]/20 focus:border-[#eb5e43] transition-all shadow-sm" placeholder="jane@example.com" />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label htmlFor="interests" className="text-[13px] font-semibold text-[#111] ml-1">Area of Interest</label>
+                    <div className="relative">
+                      <select id="interests" required className="w-full bg-white border border-gray-200 rounded-[0.8rem] px-4 py-3 text-[15px] focus:outline-none focus:ring-2 focus:ring-[#eb5e43]/20 focus:border-[#eb5e43] transition-all text-gray-800 appearance-none shadow-sm cursor-pointer">
+                        <option value="">Select an area...</option>
+                        <option value="teaching">Teaching & Mentoring</option>
+                        <option value="events">Event Coordination</option>
+                        <option value="fundraising">Fundraising</option>
+                        <option value="admin">Administrative Support</option>
+                      </select>
+                      <ChevronRight className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none rotate-90" />
+                    </div>
+                  </div>
+                  <button type="submit" className="w-full bg-[#1f1f1f] text-white py-3.5 mt-6 rounded-[0.8rem] font-medium text-[15px] hover:bg-black transition-colors shadow-md flex items-center justify-center gap-2 group/btn">
+                    Submit Application
+                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                  </button>
+                </form>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </div>
   );
 }
