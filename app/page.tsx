@@ -174,7 +174,13 @@ export default function Home() {
         </section>
 
         {/* Uniform Grid - Hypesonic style Slider */}
-        <div className="relative w-full mt-4 group/slider">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="relative w-full mt-4 group/slider"
+        >
           <button 
             onClick={scrollLeft}
             className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white/80 backdrop-blur-md shadow-md p-3 rounded-full text-gray-800 opacity-0 group-hover/slider:opacity-100 transition-opacity disabled:opacity-0 hover:bg-white"
@@ -217,10 +223,16 @@ export default function Home() {
             </div>
           ))}
           </section>
-        </div>
+        </motion.div>
 
         {/* Trusted By Logos */}
-        <section className="mt-16 md:mt-20 flex flex-col items-center opacity-70">
+        <motion.section 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-16 md:mt-20 flex flex-col items-center opacity-70"
+        >
           <p className="text-[10px] md:text-[11px] font-sans tracking-[0.2em] text-gray-500 uppercase mb-6 md:mb-8 text-center px-4">
             Trusted by reputable charities
           </p>
@@ -241,10 +253,15 @@ export default function Home() {
               <span className="font-bold text-xl md:text-2xl tracking-widest uppercase font-serif">WHO</span>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* About Us Section */}
-        <section className="my-16 lg:my-0 w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center px-4 md:px-0 lg:h-screen lg:max-h-[850px] lg:min-h-[650px]">
+        <motion.section className="my-16 lg:my-0 w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center px-4 md:px-0 lg:h-screen lg:max-h-[850px] lg:min-h-[650px]"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        >
           
           {/* Left Column */}
           <div className="flex flex-col justify-center py-6">
@@ -284,10 +301,16 @@ export default function Home() {
             </div>
           </div>
 
-        </section>
+        </motion.section>
 
         {/* Impact Goals Section */}
-        <section className="mb-24 w-full max-w-7xl mx-auto px-4 md:px-0">
+        <motion.section 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-24 w-full max-w-7xl mx-auto px-4 md:px-0"
+        >
           <div className="flex flex-col items-center mb-12">
             <div className="inline-flex items-center gap-2 bg-[#fdf5f4] border border-[#f3dcdb] px-3 py-1.5 rounded-full mb-4">
               <Sparkles className="w-3.5 h-3.5 text-[#eb5e43]" />
@@ -335,10 +358,16 @@ export default function Home() {
                <p className="text-gray-500 font-sans text-[15px] leading-relaxed">Classrooms renovated, equipped<br/>and ready for learning</p>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Projects Section */}
-        <section className="mb-24 w-full max-w-7xl mx-auto px-4 md:px-0">
+        <motion.section 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-24 w-full max-w-7xl mx-auto px-4 md:px-0"
+        >
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 pt-10 border-t border-gray-100">
             <div>
               <div className="inline-flex items-center gap-2 bg-[#fdf5f4] border border-[#f3dcdb] px-3 py-1.5 rounded-full mb-4">
@@ -431,10 +460,16 @@ export default function Home() {
               </p>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Call to Action Section */}
-        <section className="mb-24 w-full max-w-7xl mx-auto px-4 md:px-0">
+        <motion.section 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-24 w-full max-w-7xl mx-auto px-4 md:px-0"
+        >
           <div className="relative w-full h-[500px] md:h-[600px] rounded-[2rem] md:rounded-[3rem] overflow-hidden">
             <img 
                src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=1200&auto=format&fit=crop"
@@ -476,12 +511,18 @@ export default function Home() {
                <path d="M30 40 Q 30 70 20 90" stroke="white" strokeWidth="2.5" strokeLinecap="round" fill="none" />
             </svg>
           </div>
-        </section>
+        </motion.section>
 
       </main>
 
       {/* Footer */}
-      <footer className="w-full bg-[#fffcfb] border-t border-[#f3dcdb]/40 pt-16 pb-8 px-4 md:px-0 mt-auto">
+      <motion.footer 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="w-full bg-[#fffcfb] border-t border-[#f3dcdb]/40 pt-16 pb-8 px-4 md:px-0 mt-auto"
+      >
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12 lg:gap-24">
           {/* Brand & Mission */}
           <div className="max-w-md">
@@ -541,7 +582,7 @@ export default function Home() {
             <a href="#" className="text-gray-400 hover:text-[#111] font-sans text-[14px] transition-colors">Terms of Service</a>
           </div>
         </div>
-      </footer>
+      </motion.footer>
     </div>
   );
 }
