@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { Menu, Play, ArrowUpRight, Heart, Smile, Sparkles, Grid, ChevronLeft, ChevronRight, ArrowRight, X, BookOpen, Users, GraduationCap, Twitter, Instagram, Linkedin } from "lucide-react";
+import { Menu, Play, ArrowUpRight, Heart, Smile, Sparkles, Grid, ChevronLeft, ChevronRight, ArrowRight, X, BookOpen, Users, GraduationCap, Twitter, Instagram, Linkedin, DollarSign, PoundSterling, Copy, CheckCircle2, ChevronDown } from "lucide-react";
 import { motion, animate, useInView, AnimatePresence } from "motion/react";
 
 function AnimatedCounter({ from, to, duration = 2 }: { from: number, to: number, duration?: number }) {
@@ -25,12 +25,81 @@ function AnimatedCounter({ from, to, duration = 2 }: { from: number, to: number,
   return <span ref={nodeRef}>{from}</span>;
 }
 
+const faqs = [
+  {
+    question: "How secure is my donation?",
+    answer: "All direct bank deposits and transfers are securely processed through regulated banking channels. We do not store any sensitive financial data on our servers. For online transactions in the future, we use industry-standard encryption."
+  },
+  {
+    question: "How is my donation used?",
+    answer: "100% of public donations directly fund our programs and community initiatives. We maintain full transparency and publish annual financial reports to show exactly how your contributions make an impact."
+  },
+  {
+    question: "Can I get a tax receipt for my donation?",
+    answer: "Yes! If you require a tax receipt for your records, please email your transaction proof to support@amagada.org, and our team will issue a formal receipt within 3-5 business days."
+  },
+  {
+    question: "How else can I get involved?",
+    answer: "Beyond financial contributions, you can join our volunteer network! Click the 'Volunteer' button anywhere on our site to learn about active mentorship programs, community outreach, and skill-sharing opportunities."
+  }
+];
+
+function FAQAccordion() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  return (
+    <div className="w-full max-w-3xl mx-auto space-y-4">
+      {faqs.map((faq, index) => (
+        <div key={index} className="border border-gray-200 rounded-2xl overflow-hidden bg-white hover:border-gray-300 transition-colors">
+          <button 
+            onClick={() => toggleFAQ(index)}
+            className="w-full text-left px-6 py-5 flex items-center justify-between focus:outline-none"
+          >
+            <span className="font-semibold text-[#111] text-[16px] pr-4">{faq.question}</span>
+            <ChevronDown 
+              className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${openIndex === index ? 'rotate-180 text-[#eb5e43]' : ''}`}
+            />
+          </button>
+          <AnimatePresence>
+            {openIndex === index && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="overflow-hidden"
+              >
+                <div className="px-6 pb-5 pt-0 text-gray-500 text-[15px] leading-relaxed border-t border-gray-100 mt-2 pt-4">
+                  {faq.answer}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function Home() {
   const sliderRef = useRef<HTMLElement>(null);
   const [showNav, setShowNav] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isVolunteerModalOpen, setIsVolunteerModalOpen] = useState(false);
+  const [isDonateModalOpen, setIsDonateModalOpen] = useState(false);
+  const [copiedBank, setCopiedBank] = useState<string | null>(null);
+  const [donationFrequency, setDonationFrequency] = useState<'onetime' | 'monthly'>('onetime');
+
+  const handleCopy = (text: string, bank: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedBank(bank);
+    setTimeout(() => setCopiedBank(null), 2000);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -106,7 +175,10 @@ export default function Home() {
           >
             Volunteer
           </button>
-          <button className="hidden sm:block bg-[#1f1f1f] text-white px-5 py-2.5 rounded-[0.5rem] font-medium text-[14px] hover:bg-black transition-colors shadow-sm">
+          <button 
+            onClick={() => setIsDonateModalOpen(true)}
+            className="hidden lg:block bg-[#1f1f1f] text-white px-5 py-2.5 rounded-[0.5rem] font-medium text-[14px] hover:bg-black transition-colors shadow-sm"
+          >
             Donate now
           </button>
           <button 
@@ -117,28 +189,31 @@ export default function Home() {
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-
-        {/* Mobile Menu Overlay */}
-        <div 
-          className={`fixed inset-0 bg-[#fafafa] z-40 lg:hidden transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
-        >
-          <div className="flex flex-col items-center justify-center h-full gap-8 text-[1.2rem] font-medium text-gray-900">
-            <span className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Home</span>
-            <span className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>About</span>
-            <span className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Resources</span>
-            <span className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Contact</span>
-            <button className="mt-4 bg-[#1f1f1f] text-white px-8 py-3.5 rounded-[0.5rem] font-medium text-[16px] w-auto shadow-sm" onClick={() => setIsMobileMenuOpen(false)}>
-              Donate now
-            </button>
-            <button 
-              className="text-gray-900 border border-gray-300 px-8 py-3.5 rounded-[0.5rem] font-medium text-[16px] w-auto shadow-sm bg-white hover:bg-gray-50 transition-colors" 
-              onClick={() => { setIsMobileMenuOpen(false); setIsVolunteerModalOpen(true); }}
-            >
-              Volunteer
-            </button>
-          </div>
-        </div>
       </header>
+
+      {/* Mobile Menu Overlay */}
+      <div 
+        className={`fixed inset-0 bg-[#fafafa] z-40 lg:hidden transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+      >
+        <div className="flex flex-col items-center justify-center h-full gap-8 text-[1.2rem] font-medium text-gray-900">
+          <span className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Home</span>
+          <span className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>About</span>
+          <span className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Resources</span>
+          <span className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Contact</span>
+          <button 
+            className="mt-4 bg-[#1f1f1f] text-white px-8 py-3.5 rounded-[0.5rem] font-medium text-[16px] w-auto shadow-sm" 
+            onClick={() => { setIsMobileMenuOpen(false); setIsDonateModalOpen(true); }}
+          >
+            Donate now
+          </button>
+          <button 
+            className="text-gray-900 border border-gray-300 px-8 py-3.5 rounded-[0.5rem] font-medium text-[16px] w-auto shadow-sm bg-white hover:bg-gray-50 transition-colors" 
+            onClick={() => { setIsMobileMenuOpen(false); setIsVolunteerModalOpen(true); }}
+          >
+            Volunteer
+          </button>
+        </div>
+      </div>
 
       <main className="pt-24 md:pt-32 px-4 md:px-8 max-w-[1300px] mx-auto relative overflow-hidden lg:overflow-visible">
         {/* Hero Copy */}
@@ -174,15 +249,16 @@ export default function Home() {
           </motion.p>
           
           <motion.button 
+            onClick={() => setIsDonateModalOpen(true)}
             initial={{ opacity: 0, y: 30, filter: "blur(8px)", scale: 0.98 }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="bg-[#1f1f1f] text-white p-1.5 pr-6 rounded-[0.8rem] font-medium text-[15px] flex items-center gap-3 hover:bg-[#2a2a2a] transition-colors shadow-lg"
+            className="bg-[#1f1f1f] text-white p-1.5 pl-6 rounded-[0.8rem] font-medium text-[15px] flex items-center justify-between gap-6 hover:bg-[#2a2a2a] transition-colors shadow-lg w-max min-w-[210px] group/cta cursor-pointer"
           >
-            <div className="w-9 h-9 rounded-[0.5rem] bg-gradient-to-br from-[#ff8c73] to-[#eb5e43] flex items-center justify-center">
-              <Grid className="w-4 h-4 text-white stroke-[2.5]" />
-            </div>
             Make a Donation
+            <div className="w-[40px] h-[40px] rounded-[0.5rem] bg-gradient-to-br from-[#ff8c73] to-[#eb5e43] flex items-center justify-center group-hover/cta:scale-105 transition-transform">
+              <ArrowRight className="w-5 h-5 text-white stroke-[2.5]" />
+            </div>
           </motion.button>
         </section>
 
@@ -407,7 +483,7 @@ export default function Home() {
             {/* Project 1 */}
             <div className="group cursor-pointer bg-white p-4 md:p-5 rounded-[2rem] shadow-sm border border-gray-100/50 transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.12)] hover:-translate-y-2 hover:border-[#f3dcdb]/60 flex flex-col">
               <div className="relative w-full h-[240px] md:h-[260px] rounded-[1.5rem] overflow-hidden mb-5">
-                <img src="https://images.unsplash.com/photo-1544252655-33924f7e25fb?q=80&w=800&auto=format&fit=crop" alt="Building new schools" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800&auto=format&fit=crop" referrerPolicy="no-referrer" alt="Building new schools" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-[12px] font-bold text-[#111] tracking-wide uppercase shadow-sm">
                   Education
                 </div>
@@ -475,6 +551,27 @@ export default function Home() {
           </div>
         </motion.section>
 
+        {/* FAQ Section */}
+        <motion.section 
+          initial={{ opacity: 0, y: 40, filter: "blur(8px)", scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-24 w-full max-w-7xl mx-auto px-4 md:px-0"
+        >
+          <div className="text-center mb-12">
+            <h2 className="text-[2.5rem] md:text-[3rem] leading-[1.1] font-serif font-normal tracking-[-0.035em] text-[#111] mb-5">
+              Frequently Asked <br className="hidden md:block" />
+              <span className="text-gray-400">Questions</span>
+            </h2>
+            <p className="text-gray-500 text-[16px] max-w-xl mx-auto leading-[1.65]">
+              Everything you need to know about our transparency, security, and how your contribution makes an impact.
+            </p>
+          </div>
+          
+          <FAQAccordion />
+        </motion.section>
+
         {/* Call to Action Section */}
         <motion.section 
           initial={{ opacity: 0, y: 40, filter: "blur(8px)", scale: 0.98 }}
@@ -506,7 +603,10 @@ export default function Home() {
                 Choose between monthly or one-time donations to make a lasting impact in our community. Join us in our mission to provide basic education to the underprivileged.
               </p>
               
-              <button className="bg-[#1f1f1f] text-white p-1.5 pl-6 rounded-[0.8rem] font-medium text-[15px] flex items-center justify-between gap-6 hover:bg-[#2a2a2a] transition-colors shadow-lg w-max min-w-[210px] group/cta">
+              <button 
+                onClick={() => setIsDonateModalOpen(true)}
+                className="bg-[#1f1f1f] text-white p-1.5 pl-6 rounded-[0.8rem] font-medium text-[15px] flex items-center justify-between gap-6 hover:bg-[#2a2a2a] transition-colors shadow-lg w-max min-w-[210px] group/cta"
+              >
                 Make a Donation
                 <div className="w-[40px] h-[40px] rounded-[0.5rem] bg-gradient-to-br from-[#ff8c73] to-[#eb5e43] flex items-center justify-center group-hover/cta:scale-105 transition-transform">
                   <ArrowRight className="w-5 h-5 text-white stroke-[2.5]" />
@@ -611,7 +711,7 @@ export default function Home() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: "spring", damping: 25, stiffness: 300, duration: 0.6 }}
-              className="bg-white rounded-[1.5rem] w-full max-w-lg overflow-hidden shadow-2xl relative"
+              className="bg-white rounded-[1.5rem] w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl relative"
             >
               <button 
                 onClick={() => setIsVolunteerModalOpen(false)}
@@ -658,6 +758,167 @@ export default function Home() {
                   </button>
                 </form>
               </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {isDonateModalOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#111]/40 backdrop-blur-[4px]"
+          >
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300, duration: 0.6 }}
+              className="bg-white rounded-[1.5rem] w-full max-w-4xl max-h-[90vh] overflow-y-auto shadow-2xl relative"
+            >
+              <button 
+                onClick={() => setIsDonateModalOpen(false)}
+                className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-800 hover:bg-gray-100 rounded-full transition-colors z-10"
+              >
+                <X size={20} />
+              </button>
+              
+              <div className="p-8 md:p-10">
+                <div className="inline-flex items-center gap-2 bg-[#fdf5f4] border border-[#f3dcdb] px-3 py-1.5 rounded-full mb-6">
+                  <Heart className="w-3.5 h-3.5 text-[#eb5e43]" />
+                  <span className="text-[#eb5e43] text-[13px] font-semibold tracking-wide">Make an Impact</span>
+                </div>
+                <h3 className="font-serif text-3xl text-[#111] font-normal mb-3 leading-tight tracking-tight">Direct Bank <br/>Deposits</h3>
+                <p className="text-gray-500 font-sans text-[15px] mb-6 leading-[1.65]">
+                  Select your preferred currency below to find the correct banking details for a direct transfer.
+                </p>
+
+                <div className="flex bg-gray-100 p-1 rounded-[0.8rem] w-max mb-8">
+                  <button 
+                    onClick={() => setDonationFrequency('onetime')}
+                    className={`px-6 py-2 ml-0 rounded-md text-[14px] font-medium transition-all ${donationFrequency === 'onetime' ? 'bg-white text-gray-900 shadow-[0_1px_3px_rgba(0,0,0,0.1)]' : 'text-gray-500 hover:text-gray-700'}`}
+                  >
+                    One-time
+                  </button>
+                  <button 
+                    onClick={() => setDonationFrequency('monthly')}
+                    className={`px-6 py-2 rounded-md text-[14px] font-medium transition-all ${donationFrequency === 'monthly' ? 'bg-white text-gray-900 shadow-[0_1px_3px_rgba(0,0,0,0.1)]' : 'text-gray-500 hover:text-gray-700'}`}
+                  >
+                    Monthly
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {/* USD Account */}
+                  <div className="border border-gray-200 rounded-[1rem] p-5 hover:border-[#eb5e43]/30 transition-colors flex flex-col">
+                    <div className="flex flex-col gap-3 mb-auto">
+                      <div className="w-10 h-10 rounded-full bg-[#fdf5f4] flex items-center justify-center text-[#eb5e43]">
+                        <DollarSign className="w-5 h-5 stroke-[2.5]" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-[#111] text-[15px]">US Dollars (USD)</h4>
+                        <p className="text-gray-500 text-[13px] mb-4">Bank of America</p>
+                      </div>
+                    </div>
+                    <div className="bg-gray-50 rounded-[0.8rem] p-4 mt-4">
+                      <div>
+                        <p className="text-[11px] text-gray-400 font-medium mb-2 tracking-widest uppercase">Account Number</p>
+                        <div className="flex items-center justify-between gap-2">
+                          <p className="font-mono text-[#111] text-[14px] font-medium tracking-wide break-all">
+                             0011 2233 4455
+                          </p>
+                          <button 
+                            onClick={() => handleCopy('001122334455', 'usd')}
+                            className="w-8 h-8 flex-shrink-0 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:text-gray-800 hover:border-gray-300 transition-colors"
+                          >
+                            {copiedBank === 'usd' ? <CheckCircle2 className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* GBP Account */}
+                  <div className="border border-gray-200 rounded-[1rem] p-5 hover:border-[#eb5e43]/30 transition-colors flex flex-col">
+                    <div className="flex flex-col gap-3 mb-auto">
+                      <div className="w-10 h-10 rounded-full bg-[#fdf5f4] flex items-center justify-center text-[#eb5e43]">
+                        <PoundSterling className="w-5 h-5 stroke-[2.5]" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-[#111] text-[15px]">British Pounds (GBP)</h4>
+                        <p className="text-gray-500 text-[13px] mb-4">Barclays Bank</p>
+                      </div>
+                    </div>
+                    <div className="bg-gray-50 rounded-[0.8rem] p-4 mt-4">
+                      <div>
+                        <p className="text-[11px] text-gray-400 font-medium mb-2 tracking-widest uppercase">Account Number</p>
+                        <div className="flex items-center justify-between gap-2">
+                          <p className="font-mono text-[#111] text-[14px] font-medium tracking-wide break-all">
+                             40-12-34 12345678
+                          </p>
+                          <button 
+                            onClick={() => handleCopy('40123412345678', 'gbp')}
+                            className="w-8 h-8 flex-shrink-0 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:text-gray-800 hover:border-gray-300 transition-colors"
+                          >
+                            {copiedBank === 'gbp' ? <CheckCircle2 className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Naira Account */}
+                  <div className="border border-gray-200 rounded-[1rem] p-5 hover:border-[#eb5e43]/30 transition-colors flex flex-col">
+                    <div className="flex flex-col gap-3 mb-auto">
+                      <div className="w-10 h-10 rounded-full bg-[#fdf5f4] flex items-center justify-center text-[#eb5e43] font-serif font-bold text-xl leading-none">
+                        ₦
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-[#111] text-[15px]">Nigerian Naira (NGN)</h4>
+                        <p className="text-gray-500 text-[13px] mb-4">Guaranty Trust Bank</p>
+                      </div>
+                    </div>
+                    <div className="bg-gray-50 rounded-[0.8rem] p-4 mt-4">
+                      <div>
+                        <p className="text-[11px] text-gray-400 font-medium mb-2 tracking-widest uppercase">Account Number</p>
+                        <div className="flex items-center justify-between gap-2">
+                          <p className="font-mono text-[#111] text-[14px] font-medium tracking-wide break-all">
+                             0123 4567 89
+                          </p>
+                          <button 
+                            onClick={() => handleCopy('0123456789', 'ngn')}
+                            className="w-8 h-8 flex-shrink-0 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:text-gray-800 hover:border-gray-300 transition-colors"
+                          >
+                            {copiedBank === 'ngn' ? <CheckCircle2 className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <p className="mt-8 text-center text-gray-500 text-[12px] md:text-[13px] leading-relaxed max-w-2xl mx-auto border-t border-gray-100 pt-6">
+                  All bank transfers are handled securely. Note that international transfers may incur additional bank fees. 
+                  For support or to request a donation receipt, please contact <a href="mailto:support@amagada.org" className="text-[#eb5e43] hover:underline font-medium">support@amagada.org</a>.
+                </p>
+              </div>
+
+              {/* Toast for copy success */}
+              <AnimatePresence>
+                {copiedBank && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 15, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 15, scale: 0.95 }}
+                    className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-[#1f1f1f] text-white px-5 py-3 rounded-full text-[13px] font-medium shadow-xl flex items-center gap-2.5 z-20 pointer-events-none"
+                  >
+                    <CheckCircle2 className="w-4 h-4 text-green-400" />
+                    Account details copied successfully
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           </motion.div>
         )}
