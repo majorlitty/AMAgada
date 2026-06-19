@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { Menu, Play, ArrowUpRight, Heart, Smile, Sparkles, Grid, ChevronLeft, ChevronRight, ArrowRight, X, BookOpen, Users, GraduationCap, Twitter, Instagram, Linkedin, DollarSign, PoundSterling, Copy, CheckCircle2, ChevronDown } from "lucide-react";
+import { Menu, Play, ArrowUpRight, Heart, Smile, Grid, ChevronLeft, ChevronRight, ArrowRight, X, BookOpen, Users, GraduationCap, Twitter, Instagram, Linkedin, DollarSign, PoundSterling, Copy, CheckCircle2, ChevronDown } from "lucide-react";
 import { motion, animate, useInView, AnimatePresence } from "motion/react";
 
 function AnimatedCounter({ from, to, duration = 2 }: { from: number, to: number, duration?: number }) {
@@ -225,7 +225,6 @@ export default function Home() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center gap-2 bg-[#fdf5f4] border border-[#f3dcdb] px-3 py-1.5 rounded-full mb-4"
           >
-            <Sparkles className="w-3.5 h-3.5 text-[#eb5e43]" />
             <span className="text-[#eb5e43] text-[13px] font-medium tracking-wide">Social fundraising</span>
           </motion.div>
 
@@ -355,7 +354,6 @@ export default function Home() {
           {/* Left Column */}
           <div className="flex flex-col justify-center py-6">
             <div className="inline-flex items-center gap-2 bg-[#fdf5f4] border border-[#f3dcdb] px-3 py-1.5 rounded-full mb-6 self-start">
-              <Sparkles className="w-3.5 h-3.5 text-[#eb5e43]" />
               <span className="text-[#eb5e43] text-[13px] font-semibold tracking-wide">About us</span>
             </div>
             
@@ -402,7 +400,6 @@ export default function Home() {
         >
           <div className="flex flex-col items-center mb-12">
             <div className="inline-flex items-center gap-2 bg-[#fdf5f4] border border-[#f3dcdb] px-3 py-1.5 rounded-full mb-4">
-              <Sparkles className="w-3.5 h-3.5 text-[#eb5e43]" />
               <span className="text-[#eb5e43] text-[13px] font-semibold tracking-wide">Our Impact</span>
             </div>
             <h2 className="font-serif text-4xl md:text-5xl text-[#111] font-normal tracking-[-0.03em]">
@@ -460,7 +457,6 @@ export default function Home() {
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 pt-10 border-t border-gray-100">
             <div>
               <div className="inline-flex items-center gap-2 bg-[#fdf5f4] border border-[#f3dcdb] px-3 py-1.5 rounded-full mb-4">
-                <Sparkles className="w-3.5 h-3.5 text-[#eb5e43]" />
                 <span className="text-[#eb5e43] text-[13px] font-semibold tracking-wide">Ongoing Projects</span>
               </div>
               <h2 className="font-serif text-4xl md:text-5xl text-[#111] font-normal tracking-[-0.03em] mb-4">
@@ -640,7 +636,6 @@ export default function Home() {
           {/* Brand & Mission */}
           <div className="max-w-md">
             <div className="font-serif text-2xl font-medium tracking-tight text-[#111] flex items-center gap-2 mb-6">
-              <Sparkles className="w-5 h-5 text-[#eb5e43]" />
               AMAgada Foundation
             </div>
             <p className="text-gray-500 font-sans text-[15.5px] leading-[1.7]">
