@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
+import Link from "next/link";
 import { Menu, Play, ArrowUpRight, Heart, Smile, Grid, ChevronLeft, ChevronRight, ArrowRight, X, BookOpen, Users, GraduationCap, Twitter, Instagram, Linkedin, DollarSign, PoundSterling, Copy, CheckCircle2, ChevronDown } from "lucide-react";
 import { motion, animate, useInView, AnimatePresence } from "motion/react";
 
@@ -152,19 +153,19 @@ export default function Home() {
       <header 
         className={`px-6 md:px-12 py-5 flex items-center justify-between fixed top-0 left-0 w-full z-50 bg-[#fafafa]/90 backdrop-blur-md transition-transform duration-300 ease-in-out ${showNav || isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}
       >
-        <div className="flex items-center gap-2 text-gray-900 relative z-50">
+        <Link href="/" className="flex items-center gap-2 text-gray-900 relative z-50 hover:opacity-80 transition-opacity">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#eb5e43" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 2v20M2 12h20"/>
           </svg>
           <span className="font-serif font-normal text-[1.4rem] tracking-tight uppercase">AMAgada</span>
-        </div>
+        </Link>
 
         <nav className="hidden lg:flex items-center justify-center flex-1">
           <div className="flex items-center gap-10 text-[14.5px] font-medium text-gray-600">
-            <span className="cursor-pointer text-gray-900 transition-colors">Home</span>
-            <span className="cursor-pointer hover:text-gray-900 transition-colors">About</span>
-            <span className="cursor-pointer hover:text-gray-900 transition-colors">Resources</span>
-            <span className="cursor-pointer hover:text-gray-900 transition-colors">Contact</span>
+            <Link href="/" className="cursor-pointer text-gray-900 transition-colors">Home</Link>
+            <Link href="/our-story" className="cursor-pointer hover:text-gray-900 transition-colors">Our Story</Link>
+            <a href="#resources" className="cursor-pointer hover:text-gray-900 transition-colors">Resources</a>
+            <a href="#contact" className="cursor-pointer hover:text-gray-900 transition-colors">Contact</a>
           </div>
         </nav>
 
@@ -196,10 +197,10 @@ export default function Home() {
         className={`fixed inset-0 bg-[#fafafa] z-40 lg:hidden transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         <div className="flex flex-col items-center justify-center h-full gap-8 text-[1.2rem] font-medium text-gray-900">
-          <span className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Home</span>
-          <span className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>About</span>
-          <span className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Resources</span>
-          <span className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Contact</span>
+          <Link href="/" className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+          <Link href="/our-story" className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Our Story</Link>
+          <a href="#resources" className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Resources</a>
+          <a href="#contact" className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
           <button 
             className="mt-4 bg-[#1f1f1f] text-white px-8 py-3.5 rounded-[0.5rem] font-medium text-[16px] w-auto shadow-sm" 
             onClick={() => { setIsMobileMenuOpen(false); setIsDonateModalOpen(true); }}
@@ -362,15 +363,15 @@ export default function Home() {
             </h2>
             
             <p className="text-gray-500 text-[16px] md:text-[17px] leading-[1.65] mb-10 font-sans max-w-lg">
-              We believe every child deserves a chance to learn and thrive. By providing access to fundamental literacy and numeracy skills, we're building a brighter, more equitable future for Nigeria's underprivileged communities.
+              The AMAgada Foundation was born out of a legacy of love, sacrifice and an unwavering belief in the transformative power of education. The foundation honours the lives and vision of Elder Abraham Attah Agada and his beloved wife, Deaconess Mary Agada, two outstanding educators whose greatest passion is investing in people.
             </p>
             
-            <button className="bg-[#1f1f1f] text-white p-1.5 pl-6 rounded-[0.8rem] font-medium text-[15px] flex items-center justify-between gap-6 hover:bg-[#2a2a2a] transition-colors shadow-lg w-max min-w-[170px] group/btn">
-              Our history
+            <Link href="/our-story" className="bg-[#1f1f1f] text-white p-1.5 pl-6 rounded-[0.8rem] font-medium text-[15px] flex items-center justify-between gap-6 hover:bg-[#2a2a2a] transition-colors shadow-lg w-max min-w-[170px] group/btn">
+              Read Our Story
               <div className="w-9 h-9 rounded-[0.5rem] bg-gradient-to-br from-[#ff8c73] to-[#eb5e43] flex items-center justify-center group-hover/btn:scale-105 transition-transform">
                 <ArrowRight className="w-4 h-4 text-white stroke-[2.5]" />
               </div>
-            </button>
+            </Link>
           </div>
 
           {/* Right Column */}
