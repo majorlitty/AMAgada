@@ -51,7 +51,7 @@ export default function OurStory() {
           <div className="flex items-center gap-10 text-[14.5px] font-medium text-gray-600">
             <Link href="/" className="cursor-pointer hover:text-gray-900 transition-colors">Home</Link>
             <Link href="/our-story" className="cursor-pointer text-[#eb5e43] font-semibold transition-colors">Our Story</Link>
-            <a href="/#resources" className="cursor-pointer hover:text-gray-900 transition-colors">Resources</a>
+            
             <Link href="/contact" className="cursor-pointer hover:text-gray-900 transition-colors">Contact</Link>
           </div>
         </nav>
@@ -86,7 +86,7 @@ export default function OurStory() {
         <div className="flex flex-col items-center justify-center h-full gap-8 text-[1.2rem] font-medium text-gray-900">
           <Link href="/" className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
           <Link href="/our-story" className="cursor-pointer text-[#eb5e43] font-semibold transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Our Story</Link>
-          <a href="/#resources" className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Resources</a>
+          
           <Link href="/contact" className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
           <button 
             className="mt-4 bg-[#1f1f1f] text-white px-8 py-3.5 rounded-[0.5rem] font-medium text-[16px] w-auto shadow-sm" 
@@ -359,7 +359,7 @@ export default function OurStory() {
           {/* Brand & Mission */}
           <div className="max-w-md">
             <Link href="/" className="font-serif text-2xl font-medium tracking-tight text-[#111] flex items-center gap-2 mb-6 hover:opacity-80 transition-opacity">
-              AMAgada Foundation
+              <Image src="/amagada-logo.svg" alt="AMAgada Foundation" width={180} height={50} className="h-8 md:h-10 w-auto" referrerPolicy="no-referrer" />
             </Link>
             <p className="text-gray-500 font-sans text-[15.5px] leading-[1.7]">
               Preserving the educational legacy of Elder Abraham Attah Agada and Deaconess Mary Agada by empowering children and youth across Nigeria through education, healthcare, and mentorship.
