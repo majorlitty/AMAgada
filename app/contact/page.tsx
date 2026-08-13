@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
 
-export default function OurStory() {
+export default function Contact() {
   const [showNav, setShowNav] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -50,9 +50,9 @@ export default function OurStory() {
         <nav className="hidden lg:flex items-center justify-center flex-1">
           <div className="flex items-center gap-10 text-[14.5px] font-medium text-gray-600">
             <Link href="/" className="cursor-pointer hover:text-gray-900 transition-colors">Home</Link>
-            <Link href="/our-story" className="cursor-pointer text-[#eb5e43] font-semibold transition-colors">Our Story</Link>
+            <Link href="/our-story" className="cursor-pointer hover:text-gray-900 transition-colors">Our Story</Link>
             <a href="/#resources" className="cursor-pointer hover:text-gray-900 transition-colors">Resources</a>
-            <Link href="/contact" className="cursor-pointer hover:text-gray-900 transition-colors">Contact</Link>
+            <Link href="/contact" className="cursor-pointer text-[#eb5e43] font-semibold transition-colors">Contact</Link>
           </div>
         </nav>
 
@@ -85,9 +85,9 @@ export default function OurStory() {
       >
         <div className="flex flex-col items-center justify-center h-full gap-8 text-[1.2rem] font-medium text-gray-900">
           <Link href="/" className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
-          <Link href="/our-story" className="cursor-pointer text-[#eb5e43] font-semibold transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Our Story</Link>
+          <Link href="/our-story" className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Our Story</Link>
           <a href="/#resources" className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Resources</a>
-          <Link href="/contact" className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
+          <Link href="/contact" className="cursor-pointer text-[#eb5e43] font-semibold transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
           <button 
             className="mt-4 bg-[#1f1f1f] text-white px-8 py-3.5 rounded-[0.5rem] font-medium text-[16px] w-auto shadow-sm" 
             onClick={() => { setIsMobileMenuOpen(false); setIsDonateModalOpen(true); }}
@@ -104,257 +104,109 @@ export default function OurStory() {
       </div>
 
       <main className="pt-28 md:pt-36 px-4 md:px-8 max-w-[1240px] mx-auto relative">
-
         {/* PAGE HERO HEADER */}
-        <section className="text-center max-w-4xl mx-auto mb-20">
+        <section className="text-center max-w-4xl mx-auto mb-16 md:mb-24">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 bg-[#fdf5f4] border border-[#f3dcdb] px-4 py-1.5 rounded-full mb-6"
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="flex items-center justify-center gap-2 mb-6"
           >
-            
-            <span className="text-[#eb5e43] text-[13.5px] font-semibold tracking-wide">Our Story & Legacy</span>
+            <span className="bg-[#fdf5f4] text-[#eb5e43] px-4 py-1.5 rounded-full text-[13px] font-semibold tracking-wide uppercase">
+              Get in Touch
+            </span>
           </motion.div>
-
+          
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-[2.8rem] sm:text-[3.5rem] md:text-[4.2rem] leading-[1.08] font-serif font-normal tracking-[-0.035em] text-[#111] mb-6"
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="font-serif text-[3.5rem] md:text-[5rem] font-normal leading-[1.05] tracking-tight text-[#111] mb-6"
           >
-            A Legacy of Love, Sacrifice & <br className="hidden md:block" />
-            <span className="text-[#eb5e43] italic">Educational Vision</span>
+            We&apos;d love to hear from you.
           </motion.h1>
-
+          
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-gray-600 text-[17px] md:text-[19px] leading-[1.7] max-w-2xl mx-auto font-sans"
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="text-gray-500 text-[16px] md:text-[18px] max-w-2xl mx-auto leading-relaxed"
           >
-            Discover the remarkable journey of Elder Abraham Attah Agada and Deaconess Mary Agada—two visionary educators whose life’s passion continues to empower children, families, and communities across Nigeria.
+            Whether you have a question about our programs, want to volunteer, or simply wish to say hello, our team is ready to connect with you.
           </motion.p>
         </section>
 
-        {/* SECTION 1: THE FOUNDATION OF LOVE & VISION */}
-        <motion.section 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.8 }}
-          className="mb-24 bg-white border border-gray-100 rounded-[2rem] p-6 md:p-12 shadow-sm"
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            <div className="lg:col-span-6 space-y-6">
-                            <h2 className="font-serif text-3xl md:text-4xl text-[#111] font-normal leading-[1.2] tracking-tight">
-                Honouring Two Outstanding Educators
-              </h2>
-              <div className="space-y-4 text-gray-600 font-sans text-[16px] md:text-[17px] leading-[1.7]">
-                <p>
-                  The AMAgada Foundation was born out of a legacy of love, sacrifice, and an unwavering belief in the transformative power of education.
-                </p>
-                <p>
-                  The Foundation honours the lives and vision of Elder Abraham Attah Agada and his beloved wife, Deaconess Mary Agada, two outstanding educators whose greatest passion was investing in people.
-                </p>
+        {/* CONTACT INFO GRID */}
+        <section className="mb-24 w-full max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            
+            {/* Email Card */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="bg-white rounded-[2rem] p-10 flex flex-col items-center text-center shadow-sm border border-gray-100 hover:border-[#f3dcdb] transition-all duration-300 group"
+            >
+              <div className="w-16 h-16 rounded-full bg-[#fdf5f4] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <span>{"Email"}</span>
               </div>
-            </div>
-            <div className="lg:col-span-6">
-              <div className="relative rounded-[1.5rem] overflow-hidden shadow-md h-[340px] md:h-[420px] group">
-                <img 
-                  src="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=1000&auto=format&fit=crop" 
-                  alt="Educators mentoring young students" 
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-                <div className="absolute bottom-6 left-6 right-6 text-white">
-                  <p className="font-serif text-xl font-normal">Elder A.A. Agada & Deaconess Mary Agada</p>
-                  <p className="text-white/80 text-[13px] font-sans mt-1">Founding Visionaries & Life-long Educators</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.section>
-
-        {/* SECTION 2: OPENING THEIR HEARTS AND HOME */}
-        <motion.section 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.8 }}
-          className="mb-24 bg-[#fdfdfd] border border-gray-200/80 rounded-[2rem] p-6 md:p-12 shadow-sm"
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            <div className="lg:col-span-6 order-2 lg:order-1">
-              <div className="relative rounded-[1.5rem] overflow-hidden shadow-md h-[340px] md:h-[420px] group">
-                <img 
-                  src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1000&auto=format&fit=crop" 
-                  alt="Students gathering together in school" 
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full text-[13px] font-semibold text-[#111] shadow-sm">
-                  Home & Family
-                </div>
-              </div>
-            </div>
-            <div className="lg:col-span-6 order-1 lg:order-2 space-y-6">
-                            <h2 className="font-serif text-3xl md:text-4xl text-[#111] font-normal leading-[1.2] tracking-tight">
-                Opening Their Hearts and Home
-              </h2>
-              <div className="space-y-4 text-gray-600 font-sans text-[16px] md:text-[17px] leading-[1.7]">
-                <p>
-                  Known affectionately as <strong>Teacher</strong>, Elder Agada dedicated his life to teaching, mentoring, and giving children a chance to succeed. 
-                </p>
-                <p>
-                  Together with Mary, he believed education should never be limited by a child’s background or financial circumstances. Long before they held leadership roles, they opened their home to eight children beyond their own, raising and educating them as family. To them, investing in children was investing in the future of the nation.
-                </p>
-              </div>
-            </div>
-          </div>
-        </motion.section>
-
-        {/* SECTION 3: EXPANDING IMPACT & PUBLIC SERVICE */}
-        <motion.section 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.8 }}
-          className="mb-24 bg-white border border-gray-100 rounded-[2rem] p-6 md:p-12 shadow-sm"
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            <div className="lg:col-span-6 space-y-6">
-                            <h2 className="font-serif text-3xl md:text-4xl text-[#111] font-normal leading-[1.2] tracking-tight">
-                Nationwide Reach & Public Leadership
-              </h2>
-              <div className="space-y-4 text-gray-600 font-sans text-[16px] md:text-[17px] leading-[1.7]">
-                <p>
-                  Their influence reached far beyond their home, transforming the lives of children across Plateau, Benue, Kogi, and beyond.
-                </p>
-                <p>
-                  Through school fees, mentorship, encouragement, and opportunity, they helped countless young people become professionals and leaders who continue to shape society. 
-                  </p>
-                  <p> 
-                  As Directors of Education in Government, Elder A. A. Agada and Mary Agada carried the same values into public service—integrity, excellence, compassion, and an unwavering commitment to developing people.
-                </p>
-              </div>
-            </div>
-            <div className="lg:col-span-6">
-              <div className="relative rounded-[1.5rem] overflow-hidden shadow-md h-[360px] md:h-[460px] group">
-                <img 
-                  src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1000&auto=format&fit=crop" 
-                  alt="Classroom and public educational empowerment" 
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                <div className="absolute bottom-6 left-6 right-6 text-white">
-                  <span className="bg-[#eb5e43] text-white text-[12px] font-bold px-3 py-1 rounded-full tracking-wide uppercase inline-block mb-2">Impact</span>
-                  <p className="font-serif text-xl">Plateau • Benue • Kogi • Across Nigeria</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.section>
-
-        {/* SECTION 4: PRESERVING AND EXPANDING THE LEGACY */}
-        <motion.section 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.8 }}
-          className="mb-24 bg-[#fdfdfd] border border-gray-200/80 rounded-[2rem] p-6 md:p-12 shadow-sm"
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            <div className="lg:col-span-6 order-2 lg:order-1">
-              <div className="relative rounded-[1.5rem] overflow-hidden shadow-md h-[340px] md:h-[420px] group">
-                <img 
-                  src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=1000&auto=format&fit=crop" 
-                  alt="Young leaders learning and collaborating" 
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full text-[13px] font-semibold text-[#111] shadow-sm">
-                  The Next Generation
-                </div>
-              </div>
-            </div>
-            <div className="lg:col-span-6 order-1 lg:order-2 space-y-6">
-                            <h2 className="font-serif text-3xl md:text-4xl text-[#111] font-normal leading-[1.2] tracking-tight">
-                Preserving & Expanding the Legacy
-              </h2>
-              <div className="space-y-4 text-gray-600 font-sans text-[16px] md:text-[17px] leading-[1.7]">
-                <p>
-                  The AMAgada Foundation, established by their children, carries forward the legacy of Elder and Mary Agada.
-                </p>
-                <p>
-                  Inspired by their lifelong commitment to service and education, the Foundation creates opportunities for young people through education, mentorship, healthcare, leadership development, and community empowerment.
-                </p>
-                <p>
-                  Their mission is simple but powerful: to change lives, break cycles of poverty, unlock potential, and build stronger communities—one child, one family, and one community at a time.
-                </p>
-              </div>
-            </div>
-          </div>
-        </motion.section>
-
-        {/* SECTION 5: OUR VISION & CALL TO MISSION */}
-        <motion.section 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.8 }}
-          className="mb-20 bg-gradient-to-br from-[#1f1f1f] to-[#111] text-white rounded-[2rem] p-8 md:p-14 relative overflow-hidden shadow-xl"
-        >
-          <div className="max-w-3xl mx-auto text-center space-y-8 relative z-10">
-            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-1.5 rounded-full">
-              <span>{"\""}</span>
-              <span className="text-white text-[13px] font-medium tracking-wide">Our Vision & Call to Action</span>
-            </div>
-
-            <h2 className="font-serif text-3xl md:text-5xl font-normal leading-[1.15] tracking-tight text-white">
-              Empowering the Leaders of Tomorrow
-            </h2>
-
-            <div className="space-y-5 text-gray-300 font-sans text-[16.5px] md:text-[18.5px] leading-[1.7]">
-              <p>
-                Our story is more than a tribute to two remarkable lives. It is a call to continue their mission. Through partnerships, scholarships, educational programmes, healthcare and community initiatives, the AMAgada Foundation is committed to raising a new generation of empowered, ethical, and compassionate leaders who will transform their communities and the nation.
+              <h3 className="font-serif text-2xl text-[#111] font-normal mb-3">Email Us</h3>
+              <p className="text-gray-500 font-sans text-[15px] leading-relaxed mb-6">
+                Send us an email anytime and we will get back to you as soon as possible.
               </p>
-              <p className="text-white font-medium">
-                Our vision is simple: to ensure that no child is denied the opportunity to learn, grow, and fulfil their God-given potential because of circumstance.
-              </p>
-            </div>
+              <a href="mailto:hello@amagada.com" className="text-[#eb5e43] font-medium hover:underline text-[15px] mt-auto">
+                hello@amagada.com
+              </a>
+            </motion.div>
 
-            {/* HIGHLIGHTED QUOTE BANNER */}
-            <div className="py-6 px-8 bg-white/10 backdrop-blur-md rounded-[1.2rem] border border-white/15 my-8">
-              <p className="font-serif text-2xl md:text-3xl text-[#ff8c73] italic">
-                &quot;Their legacy is our mission. Their passion is our purpose.&quot;
+            {/* Phone Card */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="bg-white rounded-[2rem] p-10 flex flex-col items-center text-center shadow-sm border border-gray-100 hover:border-[#f3dcdb] transition-all duration-300 group"
+            >
+              <div className="w-16 h-16 rounded-full bg-[#fdf5f4] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <span>{"Tel"}</span>
+              </div>
+              <h3 className="font-serif text-2xl text-[#111] font-normal mb-3">Call Us</h3>
+              <p className="text-gray-500 font-sans text-[15px] leading-relaxed mb-6">
+                Speak directly with a member of our team during standard business hours.
               </p>
-            </div>
+              <a href="tel:08032865488" className="text-[#eb5e43] font-medium hover:underline text-[15px] mt-auto">
+                0803 286 5488
+              </a>
+            </motion.div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-              <button 
-                onClick={() => setIsDonateModalOpen(true)}
-                className="w-full sm:w-auto bg-[#eb5e43] text-white px-8 py-4 rounded-[0.8rem] font-medium text-[16px] hover:bg-[#d94f35] transition-all shadow-lg flex items-center justify-center gap-2 group/btn"
-              >
-                Donate Now
-                <span>{"→"}</span>
-              </button>
-              <button 
-                onClick={() => setIsVolunteerModalOpen(true)}
-                className="w-full sm:w-auto bg-white/10 text-white border border-white/30 px-8 py-4 rounded-[0.8rem] font-medium text-[16px] hover:bg-white/20 transition-all shadow-sm flex items-center justify-center gap-2"
-              >
-                Volunteer With Us
-              </button>
-            </div>
+            {/* Address Card */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="bg-white rounded-[2rem] p-10 flex flex-col items-center text-center shadow-sm border border-gray-100 hover:border-[#f3dcdb] transition-all duration-300 group"
+            >
+              <div className="w-16 h-16 rounded-full bg-[#fdf5f4] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <span>{"Pin"}</span>
+              </div>
+              <h3 className="font-serif text-2xl text-[#111] font-normal mb-3">Visit Us</h3>
+              <p className="text-gray-500 font-sans text-[15px] leading-relaxed mb-6">
+                Come say hello at our main office headquarters in Lagos.
+              </p>
+              <span className="text-[#eb5e43] font-medium text-[14px] leading-[1.6] mt-auto max-w-[200px]">
+                Block B4 357, HFP Shopping Complex, Abraham Adesanya Junction, Lekki Lagos State
+              </span>
+            </motion.div>
+
           </div>
-        </motion.section>
+        </section>
 
       </main>
 
       {/* FOOTER */}
-      <footer className="mt-20 pt-16 border-t border-gray-200/80 px-6 md:px-12 max-w-[1300px] mx-auto">
+            <footer className="mt-20 pt-16 border-t border-gray-200/80 px-6 md:px-12 max-w-[1300px] mx-auto">
         <div className="flex flex-col md:flex-row justify-between gap-12 max-w-7xl mx-auto">
           {/* Brand & Mission */}
           <div className="max-w-md">
@@ -376,7 +228,9 @@ export default function OurStory() {
               <Link href="/our-story" className="text-gray-500 hover:text-[#eb5e43] font-sans text-[15px] transition-colors flex items-center gap-1 group">
                 <span className="w-2 h-0.5 bg-[#eb5e43] opacity-0 group-hover:opacity-100 transition-opacity"></span> Our Story
               </Link>
-              
+              <a href="/#resources" className="text-gray-500 hover:text-[#eb5e43] font-sans text-[15px] transition-colors flex items-center gap-1 group">
+                <span className="w-2 h-0.5 bg-[#eb5e43] opacity-0 group-hover:opacity-100 transition-opacity"></span> Resources
+              </a>
               <Link href="/contact" className="text-gray-500 hover:text-[#eb5e43] font-sans text-[15px] transition-colors flex items-center gap-1 group">
                 <span className="w-2 h-0.5 bg-[#eb5e43] opacity-0 group-hover:opacity-100 transition-opacity"></span> Contact
               </Link>
@@ -413,6 +267,7 @@ export default function OurStory() {
         </div>
       </footer>
 
+
       {/* Volunteer Modal */}
       <AnimatePresence>
         {isVolunteerModalOpen && (
@@ -437,7 +292,11 @@ export default function OurStory() {
               </button>
               
               <div className="p-8 md:p-10">
-                                <h3 className="font-serif text-3xl text-[#111] font-normal mb-3 leading-tight tracking-tight">Become a <br/>Volunteer</h3>
+                <div className="inline-flex items-center gap-2 bg-[#fdf5f4] border border-[#f3dcdb] px-3 py-1.5 rounded-full mb-6">
+                  <span>{"♥"}</span>
+                  <span className="text-[#eb5e43] text-[13px] font-semibold tracking-wide">Join Our Mission</span>
+                </div>
+                <h3 className="font-serif text-3xl text-[#111] font-normal mb-3 leading-tight tracking-tight">Become a <br/>Volunteer</h3>
                 <p className="text-gray-500 font-sans text-[15px] mb-8 leading-[1.65]">
                   Engage with your community and make a real impact. Fill out the form below and our team will get in touch.
                 </p>
@@ -499,7 +358,11 @@ export default function OurStory() {
               </button>
               
               <div className="p-8 md:p-10">
-                                                <h3 className="font-serif text-3xl text-[#111] font-normal mb-3 leading-tight tracking-tight">How to donate</h3>
+                <div className="inline-flex items-center gap-2 bg-[#fdf5f4] border border-[#f3dcdb] px-3 py-1.5 rounded-full mb-6">
+                  <span>{"♥"}</span>
+                  <span className="text-[#eb5e43] text-[13px] font-semibold tracking-wide">Make an Impact</span>
+                </div>
+                                <h3 className="font-serif text-3xl text-[#111] font-normal mb-3 leading-tight tracking-tight">How to donate</h3>
                 <p className="text-gray-500 font-sans text-[15px] mb-8 leading-[1.65]">
                   Every contribution, regardless of its size, helps us educate a child, strengthen a family, and build healthier, more resilient communities
                 </p>
@@ -508,7 +371,7 @@ export default function OurStory() {
                   <div className="border border-gray-200 rounded-[1rem] p-5 hover:border-[#eb5e43]/30 transition-colors flex flex-col md:col-span-2">
                     <div className="flex flex-col gap-3 mb-auto">
                       <div className="w-10 h-10 rounded-full bg-[#fdf5f4] flex items-center justify-center text-[#eb5e43]">
-                        
+                        <span>{"♥"}</span>
                       </div>
                       <div>
                         <h4 className="font-semibold text-[#111] text-[15px]">ABRAHAM ATTAH AND MARY AGADA FOUNDATION</h4>

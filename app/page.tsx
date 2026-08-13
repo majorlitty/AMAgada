@@ -1,8 +1,7 @@
 "use client";
-
 import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
-import { Menu, Play, ArrowUpRight, Heart, Smile, Grid, ChevronLeft, ChevronRight, ArrowRight, X, BookOpen, Users, GraduationCap, Twitter, Instagram, Linkedin, DollarSign, PoundSterling, Copy, CheckCircle2, ChevronDown } from "lucide-react";
+import Image from "next/image";
 import { motion, animate, useInView, AnimatePresence } from "motion/react";
 
 function AnimatedCounter({ from, to, duration = 2 }: { from: number, to: number, duration?: number }) {
@@ -26,66 +25,6 @@ function AnimatedCounter({ from, to, duration = 2 }: { from: number, to: number,
   return <span ref={nodeRef}>{from}</span>;
 }
 
-const faqs = [
-  {
-    question: "How secure is my donation?",
-    answer: "All direct bank deposits and transfers are securely processed through regulated banking channels. We do not store any sensitive financial data on our servers. For online transactions in the future, we use industry-standard encryption."
-  },
-  {
-    question: "How is my donation used?",
-    answer: "100% of public donations directly fund our programs and community initiatives. We maintain full transparency and publish annual financial reports to show exactly how your contributions make an impact."
-  },
-  {
-    question: "Can I get a tax receipt for my donation?",
-    answer: "Yes! If you require a tax receipt for your records, please email your transaction proof to support@amagada.org, and our team will issue a formal receipt within 3-5 business days."
-  },
-  {
-    question: "How else can I get involved?",
-    answer: "Beyond financial contributions, you can join our volunteer network! Click the 'Volunteer' button anywhere on our site to learn about active mentorship programs, community outreach, and skill-sharing opportunities."
-  }
-];
-
-function FAQAccordion() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  const toggleFAQ = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
-  return (
-    <div className="w-full max-w-3xl mx-auto space-y-4">
-      {faqs.map((faq, index) => (
-        <div key={index} className="border border-gray-200 rounded-2xl overflow-hidden bg-white hover:border-gray-300 transition-colors">
-          <button 
-            onClick={() => toggleFAQ(index)}
-            className="w-full text-left px-6 py-5 flex items-center justify-between focus:outline-none"
-          >
-            <span className="font-semibold text-[#111] text-[16px] pr-4">{faq.question}</span>
-            <ChevronDown 
-              className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${openIndex === index ? 'rotate-180 text-[#eb5e43]' : ''}`}
-            />
-          </button>
-          <AnimatePresence>
-            {openIndex === index && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="overflow-hidden"
-              >
-                <div className="px-6 pb-5 pt-0 text-gray-500 text-[15px] leading-relaxed border-t border-gray-100 mt-2 pt-4">
-                  {faq.answer}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 export default function Home() {
   const sliderRef = useRef<HTMLElement>(null);
   const [showNav, setShowNav] = useState(true);
@@ -94,8 +33,7 @@ export default function Home() {
   const [isVolunteerModalOpen, setIsVolunteerModalOpen] = useState(false);
   const [isDonateModalOpen, setIsDonateModalOpen] = useState(false);
   const [copiedBank, setCopiedBank] = useState<string | null>(null);
-  const [donationFrequency, setDonationFrequency] = useState<'onetime' | 'monthly'>('onetime');
-
+  
   const handleCopy = (text: string, bank: string) => {
     navigator.clipboard.writeText(text);
     setCopiedBank(bank);
@@ -153,19 +91,16 @@ export default function Home() {
       <header 
         className={`px-6 md:px-12 py-5 flex items-center justify-between fixed top-0 left-0 w-full z-50 bg-[#fafafa]/90 backdrop-blur-md transition-transform duration-300 ease-in-out ${showNav || isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}
       >
-        <Link href="/" className="flex items-center gap-2 text-gray-900 relative z-50 hover:opacity-80 transition-opacity">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#eb5e43" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 2v20M2 12h20"/>
-          </svg>
-          <span className="font-serif font-normal text-[1.4rem] tracking-tight uppercase">AMAgada</span>
+                <Link href="/" className="flex items-center text-gray-900 relative z-50 hover:opacity-80 transition-opacity">
+          <Image src="/amagada-logo.svg" alt="AMAgada Foundation" width={180} height={50} className="h-8 md:h-10 w-auto" referrerPolicy="no-referrer" />
         </Link>
 
         <nav className="hidden lg:flex items-center justify-center flex-1">
           <div className="flex items-center gap-10 text-[14.5px] font-medium text-gray-600">
             <Link href="/" className="cursor-pointer text-gray-900 transition-colors">Home</Link>
             <Link href="/our-story" className="cursor-pointer hover:text-gray-900 transition-colors">Our Story</Link>
-            <a href="#resources" className="cursor-pointer hover:text-gray-900 transition-colors">Resources</a>
-            <a href="#contact" className="cursor-pointer hover:text-gray-900 transition-colors">Contact</a>
+            
+            <Link href="/contact" className="cursor-pointer hover:text-gray-900 transition-colors">Contact</Link>
           </div>
         </nav>
 
@@ -187,7 +122,7 @@ export default function Home() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? <span>{"✕"}</span> : <span>{"Menu"}</span>}
           </button>
         </div>
       </header>
@@ -199,8 +134,8 @@ export default function Home() {
         <div className="flex flex-col items-center justify-center h-full gap-8 text-[1.2rem] font-medium text-gray-900">
           <Link href="/" className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
           <Link href="/our-story" className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Our Story</Link>
-          <a href="#resources" className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Resources</a>
-          <a href="#contact" className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
+          
+          <Link href="/contact" className="cursor-pointer hover:text-[#eb5e43] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
           <button 
             className="mt-4 bg-[#1f1f1f] text-white px-8 py-3.5 rounded-[0.5rem] font-medium text-[16px] w-auto shadow-sm" 
             onClick={() => { setIsMobileMenuOpen(false); setIsDonateModalOpen(true); }}
@@ -220,15 +155,6 @@ export default function Home() {
         {/* Hero Copy */}
         <section className="text-center max-w-4xl mx-auto mb-5 px-4 flex flex-col items-center">
           
-          <motion.div 
-            initial={{ opacity: 0, y: 30, filter: "blur(8px)", scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="flex items-center gap-2 bg-[#fdf5f4] border border-[#f3dcdb] px-3 py-1.5 rounded-full mb-4"
-          >
-            <span className="text-[#eb5e43] text-[13px] font-medium tracking-wide">Social fundraising</span>
-          </motion.div>
-
           <motion.h1 
             initial={{ opacity: 0, y: 30, filter: "blur(8px)", scale: 0.98 }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
@@ -244,8 +170,7 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="text-gray-500 text-[15px] md:text-[1.05rem] max-w-2xl mx-auto leading-relaxed mb-6"
           >
-            The AMAgada foundation is dedicated to providing quality <br className="hidden md:block" />
-            basic education to underprivileged children across Nigeria
+            The AMAgada Foundation was born out of a legacy of love, sacrifice, and an unwavering belief in the transformative power of education.
           </motion.p>
           
           <motion.button 
@@ -257,7 +182,7 @@ export default function Home() {
           >
             Make a Donation
             <div className="w-[40px] h-[40px] rounded-[0.5rem] bg-gradient-to-br from-[#ff8c73] to-[#eb5e43] flex items-center justify-center group-hover/cta:scale-105 transition-transform">
-              <ArrowRight className="w-5 h-5 text-white stroke-[2.5]" />
+              <span>{"→"}</span>
             </div>
           </motion.button>
         </section>
@@ -274,14 +199,14 @@ export default function Home() {
             onClick={scrollLeft}
             className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white/80 backdrop-blur-md shadow-md p-3 rounded-full text-gray-800 opacity-0 group-hover/slider:opacity-100 transition-opacity disabled:opacity-0 hover:bg-white"
           >
-            <ChevronLeft className="w-6 h-6" />
+            <span>{"‹"}</span>
           </button>
           
           <button 
             onClick={scrollRight}
             className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white/80 backdrop-blur-md shadow-md p-3 rounded-full text-gray-800 opacity-0 group-hover/slider:opacity-100 transition-opacity disabled:opacity-0 hover:bg-white"
           >
-            <ChevronRight className="w-6 h-6" />
+            <span>{"›"}</span>
           </button>
 
           <section 
@@ -314,36 +239,6 @@ export default function Home() {
           </section>
         </motion.div>
 
-        {/* Trusted By Logos */}
-        <motion.section 
-          initial={{ opacity: 0, y: 40, filter: "blur(8px)", scale: 0.98 }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-16 md:mt-20 flex flex-col items-center opacity-70"
-        >
-          <p className="text-[10px] md:text-[11px] font-sans tracking-[0.2em] text-gray-500 uppercase mb-6 md:mb-8 text-center px-4">
-            Trusted by reputable charities
-          </p>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-14 max-w-4xl mx-auto px-4">
-            <div className="flex items-center gap-2 text-gray-400 grayscale hover:grayscale-0 transition-all cursor-pointer hover:text-[#eb5e43]">
-              <span className="font-bold text-[18px] md:text-[22px] tracking-tight font-serif uppercase">Unicef</span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-400 grayscale hover:grayscale-0 transition-all cursor-pointer hover:text-[#eb5e43]">
-              <span className="font-bold text-xl md:text-2xl tracking-tight uppercase font-serif">Red Cross</span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-400 grayscale hover:grayscale-0 transition-all cursor-pointer hover:text-[#eb5e43]">
-              <span className="font-bold text-lg md:text-xl tracking-wide uppercase font-sans">Oxfam</span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-400 grayscale hover:grayscale-0 transition-all cursor-pointer hover:text-[#eb5e43]">
-               <span className="font-bold text-[18px] md:text-[20px] tracking-tighter uppercase font-serif">Save the Children</span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-400 grayscale hover:grayscale-0 transition-all cursor-pointer hover:text-[#eb5e43]">
-              <span className="font-bold text-xl md:text-2xl tracking-widest uppercase font-serif">WHO</span>
-            </div>
-          </div>
-        </motion.section>
-
         {/* About Us Section */}
         <motion.section className="my-16 lg:my-0 w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center px-4 md:px-0 lg:h-screen lg:max-h-[850px] lg:min-h-[650px]"
           initial={{ opacity: 0, y: 40, filter: "blur(8px)", scale: 0.98 }}
@@ -363,13 +258,13 @@ export default function Home() {
             </h2>
             
             <p className="text-gray-500 text-[16px] md:text-[17px] leading-[1.65] mb-10 font-sans max-w-lg">
-              The AMAgada Foundation was born out of a legacy of love, sacrifice and an unwavering belief in the transformative power of education. The foundation honours the lives and vision of Elder Abraham Attah Agada and his beloved wife, Deaconess Mary Agada, two outstanding educators whose greatest passion is investing in people.
+              The foundation honours the lives and vision of Elder Abraham Attah Agada and his beloved wife, Deaconess Mary Agada, two outstanding educators whose greatest passion is investing in people.
             </p>
             
             <Link href="/our-story" className="bg-[#1f1f1f] text-white p-1.5 pl-6 rounded-[0.8rem] font-medium text-[15px] flex items-center justify-between gap-6 hover:bg-[#2a2a2a] transition-colors shadow-lg w-max min-w-[170px] group/btn">
               Read Our Story
               <div className="w-9 h-9 rounded-[0.5rem] bg-gradient-to-br from-[#ff8c73] to-[#eb5e43] flex items-center justify-center group-hover/btn:scale-105 transition-transform">
-                <ArrowRight className="w-4 h-4 text-white stroke-[2.5]" />
+                <span>{"→"}</span>
               </div>
             </Link>
           </div>
@@ -384,14 +279,14 @@ export default function Home() {
             {/* Play Button */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <button className="w-16 h-16 bg-[#111] rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-xl pointer-events-auto">
-                <Play className="w-6 h-6 text-white ml-1" fill="white" />
+                <span>{"▶"}</span>
               </button>
             </div>
           </div>
 
         </motion.section>
 
-        {/* Impact Goals Section */}
+        {/* Our Work Section */}
         <motion.section 
           initial={{ opacity: 0, y: 40, filter: "blur(8px)", scale: 0.98 }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
@@ -399,55 +294,103 @@ export default function Home() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="mb-24 w-full max-w-7xl mx-auto px-4 md:px-0"
         >
-          <div className="flex flex-col items-center mb-12">
+          <div className="flex flex-col items-center mb-16">
             <div className="inline-flex items-center gap-2 bg-[#fdf5f4] border border-[#f3dcdb] px-3 py-1.5 rounded-full mb-4">
-              <span className="text-[#eb5e43] text-[13px] font-semibold tracking-wide">Our Impact</span>
+              <span className="text-[#eb5e43] text-[13px] font-semibold tracking-wide">Our Work</span>
             </div>
-            <h2 className="font-serif text-4xl md:text-5xl text-[#111] font-normal tracking-[-0.03em]">
-              Goals for the year
+            <h2 className="text-[2.5rem] md:text-[3.5rem] leading-[1.1] font-serif font-normal tracking-[-0.035em] text-[#111] text-center">
+              Areas of Focus
             </h2>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
-            {/* Stat 1 */}
-            <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-gray-100/50 flex flex-col items-center text-center group hover:border-[#f3dcdb] transition-colors duration-300">
-               <div className="w-14 h-14 rounded-2xl bg-[#fdf5f4] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <BookOpen className="w-7 h-7 text-[#eb5e43]" />
-               </div>
-               <div className="text-4xl md:text-5xl font-serif text-[#111] font-normal mb-3 flex items-center tracking-tight">
-                 <AnimatedCounter from={0} to={50000} duration={2.5} />
-                 <span className="text-[#eb5e43] ml-1">+</span>
-               </div>
-               <p className="text-gray-500 font-sans text-[15px] leading-relaxed">Educational materials & books<br/>distributed to rural schools</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {/* Focus 1 */}
+            <div className="relative group overflow-hidden rounded-[2rem] shadow-sm h-[320px] flex flex-col justify-end p-8 border border-gray-100/50 hover:border-[#f3dcdb] transition-all duration-300">
+              <div className="absolute inset-0 w-full h-full">
+                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800&auto=format&fit=crop" alt="Scholarships & Education" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+              </div>
+              <div className="relative z-10 text-white">
+                <h3 className="font-serif text-2xl font-normal mb-2 text-white">Scholarships & Education</h3>
+                <p className="text-white/80 font-sans text-[14.5px] leading-relaxed mb-5">
+                  Providing scholarships and educational support for children and young people.
+                </p>
+              </div>
             </div>
 
-            {/* Stat 2 */}
-            <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-gray-100/50 flex flex-col items-center text-center group hover:border-[#f3dcdb] transition-colors duration-300">
-               <div className="w-14 h-14 rounded-2xl bg-[#fdf5f4] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Users className="w-7 h-7 text-[#eb5e43]" />
-               </div>
-               <div className="text-4xl md:text-5xl font-serif text-[#111] font-normal mb-3 flex items-center tracking-tight">
-                 <AnimatedCounter from={0} to={100} duration={2.5} />
-                 <span className="text-[#eb5e43] ml-1">k</span>
-               </div>
-               <p className="text-gray-500 font-sans text-[15px] leading-relaxed">Underprivileged children gaining<br/>access to basic education</p>
+            {/* Focus 2 */}
+            <div className="relative group overflow-hidden rounded-[2rem] shadow-sm h-[320px] flex flex-col justify-end p-8 border border-gray-100/50 hover:border-[#f3dcdb] transition-all duration-300">
+              <div className="absolute inset-0 w-full h-full">
+                <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=800&auto=format&fit=crop" alt="Leadership Mentoring" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+              </div>
+              <div className="relative z-10 text-white">
+                <h3 className="font-serif text-2xl font-normal mb-2 text-white">Leadership Mentoring</h3>
+                <p className="text-white/80 font-sans text-[14.5px] leading-relaxed mb-5">
+                  Mentoring and developing future leaders to build stronger communities.
+                </p>
+              </div>
             </div>
 
-            {/* Stat 3 */}
-            <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-gray-100/50 flex flex-col items-center text-center group hover:border-[#f3dcdb] transition-colors duration-300">
-               <div className="w-14 h-14 rounded-2xl bg-[#fdf5f4] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <GraduationCap className="w-7 h-7 text-[#eb5e43]" />
-               </div>
-               <div className="text-4xl md:text-5xl font-serif text-[#111] font-normal mb-3 flex items-center tracking-tight">
-                 <AnimatedCounter from={0} to={200} duration={2.5} />
-                 <span className="text-[#eb5e43] ml-1">+</span>
-               </div>
-               <p className="text-gray-500 font-sans text-[15px] leading-relaxed">Classrooms renovated, equipped<br/>and ready for learning</p>
+            {/* Focus 3 */}
+            <div className="relative group overflow-hidden rounded-[2rem] shadow-sm h-[320px] flex flex-col justify-end p-8 border border-gray-100/50 hover:border-[#f3dcdb] transition-all duration-300">
+              <div className="absolute inset-0 w-full h-full">
+                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=800&auto=format&fit=crop" alt="Social Intervention" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+              </div>
+              <div className="relative z-10 text-white">
+                <h3 className="font-serif text-2xl font-normal mb-2 text-white">Social Intervention</h3>
+                <p className="text-white/80 font-sans text-[14.5px] leading-relaxed mb-5">
+                  Supporting vulnerable families and communities through social intervention programmes.
+                </p>
+              </div>
+            </div>
+
+            {/* Focus 4 */}
+            <div className="relative group overflow-hidden rounded-[2rem] shadow-sm h-[320px] flex flex-col justify-end p-8 border border-gray-100/50 hover:border-[#f3dcdb] transition-all duration-300">
+              <div className="absolute inset-0 w-full h-full">
+                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=800&auto=format&fit=crop" alt="Community Health" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+              </div>
+              <div className="relative z-10 text-white">
+                <h3 className="font-serif text-2xl font-normal mb-2 text-white">Community Health</h3>
+                <p className="text-white/80 font-sans text-[14.5px] leading-relaxed mb-5">
+                  Promoting community health, wellbeing, and social inclusion.
+                </p>
+              </div>
+            </div>
+
+            {/* Focus 5 */}
+            <div className="relative group overflow-hidden rounded-[2rem] shadow-sm h-[320px] flex flex-col justify-end p-8 border border-gray-100/50 hover:border-[#f3dcdb] transition-all duration-300">
+              <div className="absolute inset-0 w-full h-full">
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop" alt="Skills & Livelihoods" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+              </div>
+              <div className="relative z-10 text-white">
+                <h3 className="font-serif text-2xl font-normal mb-2 text-white">Skills & Livelihoods</h3>
+                <p className="text-white/80 font-sans text-[14.5px] leading-relaxed mb-5">
+                  Empowering women and young people with skills and opportunities for sustainable livelihoods.
+                </p>
+              </div>
+            </div>
+
+            {/* Focus 6 */}
+            <div className="relative group overflow-hidden rounded-[2rem] shadow-sm h-[320px] flex flex-col justify-end p-8 border border-gray-100/50 hover:border-[#f3dcdb] transition-all duration-300">
+              <div className="absolute inset-0 w-full h-full">
+                <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?q=80&w=800&auto=format&fit=crop" alt="Lasting Social Change" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+              </div>
+              <div className="relative z-10 text-white">
+                <h3 className="font-serif text-2xl font-normal mb-2 text-white">Lasting Social Change</h3>
+                <p className="text-white/80 font-sans text-[14.5px] leading-relaxed mb-5">
+                  Partnering with communities to address local challenges and create lasting social change.
+                </p>
+              </div>
             </div>
           </div>
         </motion.section>
 
-        {/* Projects Section */}
+        {/* Donation Appeal Section */}
         <motion.section 
           initial={{ opacity: 0, y: 40, filter: "blur(8px)", scale: 0.98 }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
@@ -455,211 +398,68 @@ export default function Home() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="mb-24 w-full max-w-7xl mx-auto px-4 md:px-0"
         >
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 pt-10 border-t border-gray-100">
-            <div>
-              <div className="inline-flex items-center gap-2 bg-[#fdf5f4] border border-[#f3dcdb] px-3 py-1.5 rounded-full mb-4">
-                <span className="text-[#eb5e43] text-[13px] font-semibold tracking-wide">Ongoing Projects</span>
-              </div>
-              <h2 className="font-serif text-4xl md:text-5xl text-[#111] font-normal tracking-[-0.03em] mb-4">
-                Our projects in action
-              </h2>
-              <p className="text-gray-500 font-sans text-[16px] max-w-md leading-relaxed">
-                Explore how we turn donations into positive change
-              </p>
-            </div>
+          <div className="bg-gradient-to-br from-[#1f1f1f] to-[#111] rounded-[2.5rem] p-10 md:p-16 lg:p-20 relative overflow-hidden flex flex-col xl:flex-row items-center xl:items-start justify-between gap-12 shadow-xl">
+            {/* Background Accent */}
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#eb5e43]/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
             
-            <button className="bg-[#1f1f1f] text-white p-1.5 pl-6 rounded-[0.8rem] font-medium text-[15px] flex items-center justify-between gap-6 hover:bg-[#2a2a2a] transition-colors shadow-lg w-max min-w-[170px] group/btn">
-              View all
-              <div className="w-9 h-9 rounded-[0.5rem] bg-gradient-to-br from-[#ff8c73] to-[#eb5e43] flex items-center justify-center group-hover/btn:scale-105 transition-transform">
-                <ArrowRight className="w-4 h-4 text-white stroke-[2.5]" />
-              </div>
-            </button>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            {/* Project 1 */}
-            <div className="group cursor-pointer bg-white p-4 md:p-5 rounded-[2rem] shadow-sm border border-gray-100/50 transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.12)] hover:-translate-y-2 hover:border-[#f3dcdb]/60 flex flex-col">
-              <div className="relative w-full h-[240px] md:h-[260px] rounded-[1.5rem] overflow-hidden mb-5">
-                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800&auto=format&fit=crop" referrerPolicy="no-referrer" alt="Building new schools" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-[12px] font-bold text-[#111] tracking-wide uppercase shadow-sm">
-                  Education
-                </div>
-                <div className="absolute bottom-0 left-0 w-full h-1.5 bg-black/20">
-                  <div className="h-full bg-[#eb5e43]" style={{ width: '75%' }} />
-                </div>
-              </div>
-              <div className="flex justify-between items-center mb-3 px-1">
-                 <span className="text-gray-400 text-[13px] font-medium tracking-wide uppercase">Funding Goal</span>
-                 <span className="text-[#eb5e43] text-[13px] font-bold">75% funded</span>
-              </div>
-              <h3 className="font-serif text-2xl text-[#111] font-normal mb-3 tracking-tight group-hover:text-[#eb5e43] transition-colors duration-300">
-                Lagos Rural School Initiative
-              </h3>
-              <p className="text-gray-500 font-sans text-[15px] leading-relaxed line-clamp-2 md:mb-2">
-                Constructing new classroom blocks and outfitting them with modern learning materials for over 500 students in rural Lagos.
-              </p>
-            </div>
-
-            {/* Project 2 */}
-            <div className="group cursor-pointer bg-white p-4 md:p-5 rounded-[2rem] shadow-sm border border-gray-100/50 transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.12)] hover:-translate-y-2 hover:border-[#f3dcdb]/60 flex flex-col">
-              <div className="relative w-full h-[240px] md:h-[260px] rounded-[1.5rem] overflow-hidden mb-5">
-                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop" alt="Teacher training" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-[12px] font-bold text-[#111] tracking-wide uppercase shadow-sm">
-                  Training
-                </div>
-                <div className="absolute bottom-0 left-0 w-full h-1.5 bg-black/20">
-                  <div className="h-full bg-[#eb5e43]" style={{ width: '40%' }} />
-                </div>
-              </div>
-              <div className="flex justify-between items-center mb-3 px-1">
-                 <span className="text-gray-400 text-[13px] font-medium tracking-wide uppercase">Funding Goal</span>
-                 <span className="text-[#eb5e43] text-[13px] font-bold">40% funded</span>
-              </div>
-              <h3 className="font-serif text-2xl text-[#111] font-normal mb-3 tracking-tight group-hover:text-[#eb5e43] transition-colors duration-300">
-                Teacher Literacy Program
-              </h3>
-              <p className="text-gray-500 font-sans text-[15px] leading-relaxed line-clamp-2 md:mb-2">
-                Providing intensive training programs to equip local teachers with advanced fundamental teaching methodologies.
-              </p>
-            </div>
-
-            {/* Project 3 */}
-            <div className="group cursor-pointer bg-white p-4 md:p-5 rounded-[2rem] shadow-sm border border-gray-100/50 transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.12)] hover:-translate-y-2 hover:border-[#f3dcdb]/60 flex flex-col">
-              <div className="relative w-full h-[240px] md:h-[260px] rounded-[1.5rem] overflow-hidden mb-5">
-                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=800&auto=format&fit=crop" alt="Reading materials" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-[12px] font-bold text-[#111] tracking-wide uppercase shadow-sm">
-                  Resources
-                </div>
-                <div className="absolute bottom-0 left-0 w-full h-1.5 bg-black/20">
-                  <div className="h-full bg-[#eb5e43]" style={{ width: '90%' }} />
-                </div>
-              </div>
-              <div className="flex justify-between items-center mb-3 px-1">
-                 <span className="text-gray-400 text-[13px] font-medium tracking-wide uppercase">Funding Goal</span>
-                 <span className="text-[#eb5e43] text-[13px] font-bold">90% funded</span>
-              </div>
-              <h3 className="font-serif text-2xl text-[#111] font-normal mb-3 tracking-tight group-hover:text-[#eb5e43] transition-colors duration-300">
-                Book Distribution Drive
-              </h3>
-              <p className="text-gray-500 font-sans text-[15px] leading-relaxed line-clamp-2 md:mb-2">
-                Distributing thousands of textbooks, writing materials, and digital learning devices to remote communities.
-              </p>
-            </div>
-          </div>
-        </motion.section>
-
-        {/* FAQ Section */}
-        <motion.section 
-          initial={{ opacity: 0, y: 40, filter: "blur(8px)", scale: 0.98 }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-24 w-full max-w-7xl mx-auto px-4 md:px-0"
-        >
-          <div className="text-center mb-12">
-            <h2 className="text-[2.5rem] md:text-[3rem] leading-[1.1] font-serif font-normal tracking-[-0.035em] text-[#111] mb-5">
-              Frequently Asked <br className="hidden md:block" />
-              <span className="text-gray-400">Questions</span>
-            </h2>
-            <p className="text-gray-500 text-[16px] max-w-xl mx-auto leading-[1.65]">
-              Everything you need to know about our transparency, security, and how your contribution makes an impact.
-            </p>
-          </div>
-          
-          <FAQAccordion />
-        </motion.section>
-
-        {/* Call to Action Section */}
-        <motion.section 
-          initial={{ opacity: 0, y: 40, filter: "blur(8px)", scale: 0.98 }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-24 w-full max-w-7xl mx-auto px-4 md:px-0"
-        >
-          <div className="relative w-full h-[500px] md:h-[600px] rounded-[2rem] md:rounded-[3rem] overflow-hidden">
-            <img 
-               src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=1200&auto=format&fit=crop"
-               alt="Group of diverse people smiling together"
-               className="w-full h-full object-cover"
-            />
-            {/* Gradient Overlay for better readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/10"></div>
-            
-            <div className="absolute inset-0 flex flex-col items-center justify-start text-center pt-16 md:pt-24 px-6 z-10">
-              <div className="inline-flex items-center gap-2 bg-[#fdf5f4] border border-[#f3dcdb] px-3 py-1.5 rounded-full mb-6">
-                <Heart className="w-3.5 h-3.5 text-[#eb5e43]" />
-                <span className="text-[#eb5e43] text-[13px] font-semibold tracking-wide">Together, we grow hope</span>
-              </div>
-              
-              <h2 className="text-[3rem] md:text-[4rem] lg:text-[4.5rem] leading-[1.05] font-serif font-normal tracking-[-0.035em] text-white mb-6 max-w-3xl drop-shadow-md">
-                Your gift changes lives
+            <div className="flex-1 relative z-10 max-w-3xl">
+              <h2 className="font-serif text-3xl md:text-[2.8rem] text-white font-normal leading-[1.15] tracking-tight mb-6">
+                Help Us Continue a Legacy of Transforming Lives
               </h2>
-              
-              <p className="text-white/90 text-[16px] md:text-[17px] leading-[1.65] font-sans mb-10 max-w-2xl drop-shadow-sm font-medium">
-                Choose between monthly or one-time donations to make a lasting impact in our community. Join us in our mission to provide basic education to the underprivileged.
-              </p>
-              
-              <button 
+              <div className="space-y-4 text-gray-300 font-sans text-[16px] md:text-[17px] leading-[1.7]">
+                <p>
+                  Every child deserves the opportunity to learn, dream, and build a brighter future. Yet for many children and families, poverty, limited access to education, and social challenges continue to stand in the way of their potential. Your donation is more than a financial gift—it is an investment in hope, opportunity, and a stronger future.
+                </p>
+                <p>
+                  Your support helps provide school fees, books, uniforms, learning materials, mentorship, community outreach programmes, and practical support for vulnerable individuals and families.
+                </p>
+              </div>
+            </div>
+
+            <div className="relative z-10 shrink-0 w-full xl:w-auto xl:mt-8">
+                            <button 
                 onClick={() => setIsDonateModalOpen(true)}
-                className="bg-[#1f1f1f] text-white p-1.5 pl-6 rounded-[0.8rem] font-medium text-[15px] flex items-center justify-between gap-6 hover:bg-[#2a2a2a] transition-colors shadow-lg w-max min-w-[210px] group/cta"
+                className="bg-[#1f1f1f] text-white p-1.5 pl-6 rounded-[0.8rem] font-medium text-[15px] flex items-center justify-between gap-6 hover:bg-[#2a2a2a] transition-colors shadow-lg w-full xl:w-max xl:min-w-[210px] group/cta cursor-pointer"
               >
                 Make a Donation
-                <div className="w-[40px] h-[40px] rounded-[0.5rem] bg-gradient-to-br from-[#ff8c73] to-[#eb5e43] flex items-center justify-center group-hover/cta:scale-105 transition-transform">
-                  <ArrowRight className="w-5 h-5 text-white stroke-[2.5]" />
+                <div className="w-[40px] h-[40px] rounded-[0.5rem] bg-gradient-to-br from-[#ff8c73] to-[#eb5e43] flex items-center justify-center group-hover/cta:scale-105 transition-transform shrink-0">
+                  <span>{"→"}</span>
                 </div>
               </button>
             </div>
-            
-            {/* Decorative SVGs for the CTA section to mimic the drawing overlays */}
-            <svg className="absolute top-20 left-10 md:left-24 lg:left-32 w-16 h-16 md:w-24 md:h-24 opacity-80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-               <path d="M10 80 Q 20 60 50 70 T 90 20" stroke="#eb5e43" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-               <path d="M80 15 L 90 20 L 85 30" stroke="#eb5e43" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-            </svg>
-            <svg className="absolute top-24 right-10 md:right-24 lg:right-32 w-16 h-16 md:w-24 md:h-24 opacity-60" viewBox="0 0 60 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-               <path d="M30 10 C 10 10, 10 30, 30 40 C 50 30, 50 10, 30 10 Z" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-               <path d="M30 40 Q 30 70 20 90" stroke="white" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-            </svg>
           </div>
         </motion.section>
+
 
       </main>
 
       {/* Footer */}
-      <motion.footer 
-        initial={{ opacity: 0, y: 40, filter: "blur(8px)", scale: 0.98 }}
-        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="w-full bg-[#fffcfb] border-t border-[#f3dcdb]/40 pt-16 pb-8 px-4 md:px-0 mt-auto"
-      >
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12 lg:gap-24">
+            <footer className="mt-20 pt-16 border-t border-gray-200/80 px-6 md:px-12 max-w-[1300px] mx-auto">
+        <div className="flex flex-col md:flex-row justify-between gap-12 max-w-7xl mx-auto">
           {/* Brand & Mission */}
           <div className="max-w-md">
-            <div className="font-serif text-2xl font-medium tracking-tight text-[#111] flex items-center gap-2 mb-6">
-              AMAgada Foundation
-            </div>
+            <Link href="/" className="font-serif text-2xl font-medium tracking-tight text-[#111] flex items-center gap-2 mb-6 hover:opacity-80 transition-opacity">
+              <Image src="/amagada-logo.svg" alt="AMAgada Foundation" width={180} height={50} className="h-8 md:h-10 w-auto" referrerPolicy="no-referrer" />
+            </Link>
             <p className="text-gray-500 font-sans text-[15.5px] leading-[1.7]">
-              Dedicated to providing basic education to underprivileged children across Nigeria, transforming lives and building brighter futures one classroom at a time.
+              Preserving the educational legacy of Elder Abraham Attah Agada and Deaconess Mary Agada by empowering children and youth across Nigeria through education, healthcare, and mentorship.
             </p>
           </div>
           
-          <div className="flex-1 flex flex-col sm:flex-row gap-12 md:gap-24 justify-end">
-            {/* Quick Links */}
-            <div className="flex flex-col gap-4">
-              <h4 className="font-serif text-[18px] text-[#111] mb-2 font-normal">Quick Links</h4>
-              <a href="#" className="text-gray-500 hover:text-[#eb5e43] font-sans text-[15px] transition-colors flex items-center gap-1 group">
+          {/* Quick Links & Info */}
+          <div className="flex flex-col sm:flex-row gap-12 sm:gap-20">
+            <div className="flex flex-col gap-3">
+              <h4 className="font-serif text-[18px] text-[#111] mb-2 font-normal">Navigation</h4>
+              <Link href="/" className="text-gray-500 hover:text-[#eb5e43] font-sans text-[15px] transition-colors flex items-center gap-1 group">
                 <span className="w-2 h-0.5 bg-[#eb5e43] opacity-0 group-hover:opacity-100 transition-opacity"></span> Home
-              </a>
-              <a href="#" className="text-gray-500 hover:text-[#eb5e43] font-sans text-[15px] transition-colors flex items-center gap-1 group">
-                <span className="w-2 h-0.5 bg-[#eb5e43] opacity-0 group-hover:opacity-100 transition-opacity"></span> Projects
-              </a>
-              <a href="#" className="text-gray-500 hover:text-[#eb5e43] font-sans text-[15px] transition-colors flex items-center gap-1 group">
-                <span className="w-2 h-0.5 bg-[#eb5e43] opacity-0 group-hover:opacity-100 transition-opacity"></span> About
-              </a>
-              <a href="#" className="text-gray-500 hover:text-[#eb5e43] font-sans text-[15px] transition-colors flex items-center gap-1 group">
+              </Link>
+              <Link href="/our-story" className="text-gray-500 hover:text-[#eb5e43] font-sans text-[15px] transition-colors flex items-center gap-1 group">
+                <span className="w-2 h-0.5 bg-[#eb5e43] opacity-0 group-hover:opacity-100 transition-opacity"></span> Our Story
+              </Link>
+              
+              <Link href="/contact" className="text-gray-500 hover:text-[#eb5e43] font-sans text-[15px] transition-colors flex items-center gap-1 group">
                 <span className="w-2 h-0.5 bg-[#eb5e43] opacity-0 group-hover:opacity-100 transition-opacity"></span> Contact
-              </a>
+              </Link>
             </div>
             
             {/* Social Links */}
@@ -667,13 +467,13 @@ export default function Home() {
               <h4 className="font-serif text-[18px] text-[#111] mb-2 font-normal">Follow Us</h4>
               <div className="flex items-center gap-3">
                 <a href="#" className="w-11 h-11 rounded-full bg-[#fdf5f4] border border-[#f3dcdb]/60 flex items-center justify-center text-[#eb5e43] hover:bg-[#eb5e43] hover:text-white transition-colors group">
-                  <Twitter className="w-[18px] h-[18px] fill-current group-hover:scale-110 transition-transform" />
+                  <span>{"X"}</span>
                 </a>
                 <a href="#" className="w-11 h-11 rounded-full bg-[#fdf5f4] border border-[#f3dcdb]/60 flex items-center justify-center text-[#eb5e43] hover:bg-[#eb5e43] hover:text-white transition-colors group">
-                  <Instagram className="w-[18px] h-[18px] group-hover:scale-110 transition-transform" />
+                  <span>{"IG"}</span>
                 </a>
                 <a href="#" className="w-11 h-11 rounded-full bg-[#fdf5f4] border border-[#f3dcdb]/60 flex items-center justify-center text-[#eb5e43] hover:bg-[#eb5e43] hover:text-white transition-colors group">
-                  <Linkedin className="w-[18px] h-[18px] fill-current group-hover:scale-110 transition-transform" />
+                  <span>{"LI"}</span>
                 </a>
               </div>
             </div>
@@ -691,7 +491,8 @@ export default function Home() {
             <a href="#" className="text-gray-400 hover:text-[#111] font-sans text-[14px] transition-colors">Terms of Service</a>
           </div>
         </div>
-      </motion.footer>
+      </footer>
+
 
       {/* Volunteer Modal */}
       <AnimatePresence>
@@ -713,12 +514,12 @@ export default function Home() {
                 onClick={() => setIsVolunteerModalOpen(false)}
                 className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-800 hover:bg-gray-100 rounded-full transition-colors z-10"
               >
-                <X size={20} />
+                <span>{"✕"}</span>
               </button>
               
               <div className="p-8 md:p-10">
                 <div className="inline-flex items-center gap-2 bg-[#fdf5f4] border border-[#f3dcdb] px-3 py-1.5 rounded-full mb-6">
-                  <Heart className="w-3.5 h-3.5 text-[#eb5e43]" />
+                  <span>{"♥"}</span>
                   <span className="text-[#eb5e43] text-[13px] font-semibold tracking-wide">Join Our Mission</span>
                 </div>
                 <h3 className="font-serif text-3xl text-[#111] font-normal mb-3 leading-tight tracking-tight">Become a <br/>Volunteer</h3>
@@ -745,12 +546,12 @@ export default function Home() {
                         <option value="fundraising">Fundraising</option>
                         <option value="admin">Administrative Support</option>
                       </select>
-                      <ChevronRight className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none rotate-90" />
+                      <span>{"›"}</span>
                     </div>
                   </div>
                   <button type="submit" className="w-full bg-[#1f1f1f] text-white py-3.5 mt-6 rounded-[0.8rem] font-medium text-[15px] hover:bg-black transition-colors shadow-md flex items-center justify-center gap-2 group/btn">
                     Submit Application
-                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    <span>{"→"}</span>
                   </button>
                 </form>
               </div>
@@ -778,116 +579,42 @@ export default function Home() {
                 onClick={() => setIsDonateModalOpen(false)}
                 className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-800 hover:bg-gray-100 rounded-full transition-colors z-10"
               >
-                <X size={20} />
+                <span>{"✕"}</span>
               </button>
               
               <div className="p-8 md:p-10">
                 <div className="inline-flex items-center gap-2 bg-[#fdf5f4] border border-[#f3dcdb] px-3 py-1.5 rounded-full mb-6">
-                  <Heart className="w-3.5 h-3.5 text-[#eb5e43]" />
+                  
                   <span className="text-[#eb5e43] text-[13px] font-semibold tracking-wide">Make an Impact</span>
                 </div>
-                <h3 className="font-serif text-3xl text-[#111] font-normal mb-3 leading-tight tracking-tight">Direct Bank <br/>Deposits</h3>
-                <p className="text-gray-500 font-sans text-[15px] mb-6 leading-[1.65]">
-                  Select your preferred currency below to find the correct banking details for a direct transfer.
+                                <h3 className="font-serif text-3xl text-[#111] font-normal mb-3 leading-tight tracking-tight">How to donate</h3>
+                <p className="text-gray-500 font-sans text-[15px] mb-8 leading-[1.65]">
+                  Every contribution, regardless of its size, helps us educate a child, strengthen a family, and build healthier, more resilient communities
                 </p>
 
-                <div className="flex bg-gray-100 p-1 rounded-[0.8rem] w-max mb-8">
-                  <button 
-                    onClick={() => setDonationFrequency('onetime')}
-                    className={`px-6 py-2 ml-0 rounded-md text-[14px] font-medium transition-all ${donationFrequency === 'onetime' ? 'bg-white text-gray-900 shadow-[0_1px_3px_rgba(0,0,0,0.1)]' : 'text-gray-500 hover:text-gray-700'}`}
-                  >
-                    One-time
-                  </button>
-                  <button 
-                    onClick={() => setDonationFrequency('monthly')}
-                    className={`px-6 py-2 rounded-md text-[14px] font-medium transition-all ${donationFrequency === 'monthly' ? 'bg-white text-gray-900 shadow-[0_1px_3px_rgba(0,0,0,0.1)]' : 'text-gray-500 hover:text-gray-700'}`}
-                  >
-                    Monthly
-                  </button>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {/* USD Account */}
-                  <div className="border border-gray-200 rounded-[1rem] p-5 hover:border-[#eb5e43]/30 transition-colors flex flex-col">
+                <div className="grid grid-cols-1 gap-4">
+                  <div className="border border-gray-200 rounded-[1rem] p-5 hover:border-[#eb5e43]/30 transition-colors flex flex-col md:col-span-2">
                     <div className="flex flex-col gap-3 mb-auto">
                       <div className="w-10 h-10 rounded-full bg-[#fdf5f4] flex items-center justify-center text-[#eb5e43]">
-                        <DollarSign className="w-5 h-5 stroke-[2.5]" />
+                        
                       </div>
                       <div>
-                        <h4 className="font-semibold text-[#111] text-[15px]">US Dollars (USD)</h4>
-                        <p className="text-gray-500 text-[13px] mb-4">Bank of America</p>
+                        <h4 className="font-semibold text-[#111] text-[15px]">ABRAHAM ATTAH AND MARY AGADA FOUNDATION</h4>
+                        <p className="text-gray-500 text-[13px] mb-4">First Bank Nigeria</p>
                       </div>
                     </div>
                     <div className="bg-gray-50 rounded-[0.8rem] p-4 mt-4">
                       <div>
                         <p className="text-[11px] text-gray-400 font-medium mb-2 tracking-widest uppercase">Account Number</p>
                         <div className="flex items-center justify-between gap-2">
-                          <p className="font-mono text-[#111] text-[14px] font-medium tracking-wide break-all">
-                             0011 2233 4455
+                          <p className="font-mono text-[#111] text-[16px] font-medium tracking-wide break-all">
+                             2049080551
                           </p>
                           <button 
-                            onClick={() => handleCopy('001122334455', 'usd')}
-                            className="w-8 h-8 flex-shrink-0 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:text-gray-800 hover:border-gray-300 transition-colors"
+                            onClick={() => handleCopy('2049080551', 'firstbank')}
+                            className="w-10 h-10 flex-shrink-0 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:text-gray-800 hover:border-gray-300 transition-colors"
                           >
-                            {copiedBank === 'usd' ? <CheckCircle2 className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* GBP Account */}
-                  <div className="border border-gray-200 rounded-[1rem] p-5 hover:border-[#eb5e43]/30 transition-colors flex flex-col">
-                    <div className="flex flex-col gap-3 mb-auto">
-                      <div className="w-10 h-10 rounded-full bg-[#fdf5f4] flex items-center justify-center text-[#eb5e43]">
-                        <PoundSterling className="w-5 h-5 stroke-[2.5]" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-[#111] text-[15px]">British Pounds (GBP)</h4>
-                        <p className="text-gray-500 text-[13px] mb-4">Barclays Bank</p>
-                      </div>
-                    </div>
-                    <div className="bg-gray-50 rounded-[0.8rem] p-4 mt-4">
-                      <div>
-                        <p className="text-[11px] text-gray-400 font-medium mb-2 tracking-widest uppercase">Account Number</p>
-                        <div className="flex items-center justify-between gap-2">
-                          <p className="font-mono text-[#111] text-[14px] font-medium tracking-wide break-all">
-                             40-12-34 12345678
-                          </p>
-                          <button 
-                            onClick={() => handleCopy('40123412345678', 'gbp')}
-                            className="w-8 h-8 flex-shrink-0 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:text-gray-800 hover:border-gray-300 transition-colors"
-                          >
-                            {copiedBank === 'gbp' ? <CheckCircle2 className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Naira Account */}
-                  <div className="border border-gray-200 rounded-[1rem] p-5 hover:border-[#eb5e43]/30 transition-colors flex flex-col">
-                    <div className="flex flex-col gap-3 mb-auto">
-                      <div className="w-10 h-10 rounded-full bg-[#fdf5f4] flex items-center justify-center text-[#eb5e43] font-serif font-bold text-xl leading-none">
-                        ₦
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-[#111] text-[15px]">Nigerian Naira (NGN)</h4>
-                        <p className="text-gray-500 text-[13px] mb-4">Guaranty Trust Bank</p>
-                      </div>
-                    </div>
-                    <div className="bg-gray-50 rounded-[0.8rem] p-4 mt-4">
-                      <div>
-                        <p className="text-[11px] text-gray-400 font-medium mb-2 tracking-widest uppercase">Account Number</p>
-                        <div className="flex items-center justify-between gap-2">
-                          <p className="font-mono text-[#111] text-[14px] font-medium tracking-wide break-all">
-                             0123 4567 89
-                          </p>
-                          <button 
-                            onClick={() => handleCopy('0123456789', 'ngn')}
-                            className="w-8 h-8 flex-shrink-0 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:text-gray-800 hover:border-gray-300 transition-colors"
-                          >
-                            {copiedBank === 'ngn' ? <CheckCircle2 className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
+                            {copiedBank === 'firstbank' ? <span>{"✓"}</span> : <span>{"Copy"}</span>}
                           </button>
                         </div>
                       </div>
@@ -902,6 +629,7 @@ export default function Home() {
               </div>
 
               {/* Toast for copy success */}
+{/* Toast for copy success */}
               <AnimatePresence>
                 {copiedBank && (
                   <motion.div 
@@ -910,7 +638,7 @@ export default function Home() {
                     exit={{ opacity: 0, y: 15, scale: 0.95 }}
                     className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-[#1f1f1f] text-white px-5 py-3 rounded-full text-[13px] font-medium shadow-xl flex items-center gap-2.5 z-20 pointer-events-none"
                   >
-                    <CheckCircle2 className="w-4 h-4 text-green-400" />
+                    <span>{"✓"}</span>
                     Account details copied successfully
                   </motion.div>
                 )}
