@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
+import { Twitter, Instagram, Linkedin, Copy, Check, Menu, X as XIcon, Heart } from "lucide-react";
 
 export default function OurStory() {
   const [showNav, setShowNav] = useState(true);
@@ -74,7 +75,7 @@ export default function OurStory() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <span>{"✕"}</span> : <span>{"Menu"}</span>}
+            {isMobileMenuOpen ? <XIcon size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </header>
@@ -359,7 +360,7 @@ export default function OurStory() {
           {/* Brand & Mission */}
           <div className="max-w-md">
             <Link href="/" className="font-serif text-2xl font-medium tracking-tight text-[#111] flex items-center gap-2 mb-6 hover:opacity-80 transition-opacity">
-              <Image src="/amagada-logo.svg" alt="AMAgada Foundation" width={180} height={50} className="h-8 md:h-10 w-auto" referrerPolicy="no-referrer" />
+              AMAgada Foundation
             </Link>
             <p className="text-gray-500 font-sans text-[15.5px] leading-[1.7]">
               Preserving the educational legacy of Elder Abraham Attah Agada and Deaconess Mary Agada by empowering children and youth across Nigeria through education, healthcare, and mentorship.
@@ -387,13 +388,13 @@ export default function OurStory() {
               <h4 className="font-serif text-[18px] text-[#111] mb-2 font-normal">Follow Us</h4>
               <div className="flex items-center gap-3">
                 <a href="#" className="w-11 h-11 rounded-full bg-[#fdf5f4] border border-[#f3dcdb]/60 flex items-center justify-center text-[#eb5e43] hover:bg-[#eb5e43] hover:text-white transition-colors group">
-                  <span>{"X"}</span>
+                  <Twitter size={18} />
                 </a>
                 <a href="#" className="w-11 h-11 rounded-full bg-[#fdf5f4] border border-[#f3dcdb]/60 flex items-center justify-center text-[#eb5e43] hover:bg-[#eb5e43] hover:text-white transition-colors group">
-                  <span>{"IG"}</span>
+                  <Instagram size={18} />
                 </a>
                 <a href="#" className="w-11 h-11 rounded-full bg-[#fdf5f4] border border-[#f3dcdb]/60 flex items-center justify-center text-[#eb5e43] hover:bg-[#eb5e43] hover:text-white transition-colors group">
-                  <span>{"LI"}</span>
+                  <Linkedin size={18} />
                 </a>
               </div>
             </div>
@@ -433,7 +434,7 @@ export default function OurStory() {
                 onClick={() => setIsVolunteerModalOpen(false)}
                 className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-800 hover:bg-gray-100 rounded-full transition-colors z-10"
               >
-                <span>{"✕"}</span>
+                <XIcon size={20} />
               </button>
               
               <div className="p-8 md:p-10">
@@ -495,7 +496,7 @@ export default function OurStory() {
                 onClick={() => setIsDonateModalOpen(false)}
                 className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-800 hover:bg-gray-100 rounded-full transition-colors z-10"
               >
-                <span>{"✕"}</span>
+                <XIcon size={20} />
               </button>
               
               <div className="p-8 md:p-10">
@@ -508,7 +509,7 @@ export default function OurStory() {
                   <div className="border border-gray-200 rounded-[1rem] p-5 hover:border-[#eb5e43]/30 transition-colors flex flex-col md:col-span-2">
                     <div className="flex flex-col gap-3 mb-auto">
                       <div className="w-10 h-10 rounded-full bg-[#fdf5f4] flex items-center justify-center text-[#eb5e43]">
-                        
+                        <Heart size={18} className="fill-[#eb5e43]" />
                       </div>
                       <div>
                         <h4 className="font-semibold text-[#111] text-[15px]">ABRAHAM ATTAH AND MARY AGADA FOUNDATION</h4>
@@ -526,7 +527,7 @@ export default function OurStory() {
                             onClick={() => handleCopy('2049080551', 'firstbank')}
                             className="w-10 h-10 flex-shrink-0 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:text-gray-800 hover:border-gray-300 transition-colors"
                           >
-                            {copiedBank === 'firstbank' ? <span>{"✓"}</span> : <span>{"Copy"}</span>}
+                            {copiedBank === 'firstbank' ? <Check size={16} /> : <Copy size={16} />}
                           </button>
                         </div>
                       </div>
@@ -550,7 +551,7 @@ export default function OurStory() {
                     exit={{ opacity: 0, y: 15, scale: 0.95 }}
                     className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-[#1f1f1f] text-white px-5 py-3 rounded-full text-[13px] font-medium shadow-xl flex items-center gap-2.5 z-20 pointer-events-none"
                   >
-                    <span>{"✓"}</span>
+                    <Check size={16} className="text-[#eb5e43]" />
                     Account details copied successfully
                   </motion.div>
                 )}

@@ -3,6 +3,7 @@ import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, animate, useInView, AnimatePresence } from "motion/react";
+import { Twitter, Instagram, Linkedin, Copy, Check, Menu, X as XIcon, Heart } from "lucide-react";
 
 function AnimatedCounter({ from, to, duration = 2 }: { from: number, to: number, duration?: number }) {
   const nodeRef = useRef<HTMLSpanElement>(null);
@@ -26,7 +27,6 @@ function AnimatedCounter({ from, to, duration = 2 }: { from: number, to: number,
 }
 
 export default function Home() {
-  const sliderRef = useRef<HTMLElement>(null);
   const [showNav, setShowNav] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -56,34 +56,6 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY, isMobileMenuOpen]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (sliderRef.current) {
-        const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
-        
-        if (scrollLeft + clientWidth >= scrollWidth - 10) {
-          sliderRef.current.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-          sliderRef.current.scrollBy({ left: 320, behavior: 'smooth' }); // Cards are max 300px + gap of 16px
-        }
-      }
-    }, 4000);
-    
-    return () => clearInterval(interval);
-  }, []);
-
-  const scrollLeft = () => {
-    if (sliderRef.current) {
-      sliderRef.current.scrollBy({ left: -340, behavior: 'smooth' });
-    }
-  };
-
-  const scrollRight = () => {
-    if (sliderRef.current) {
-      sliderRef.current.scrollBy({ left: 340, behavior: 'smooth' });
-    }
-  };
 
   return (
     <div className="min-h-screen bg-[#fafafa] font-sans selection:bg-[#eb5e43]/20 pb-20">
@@ -122,7 +94,7 @@ export default function Home() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <span>{"✕"}</span> : <span>{"Menu"}</span>}
+            {isMobileMenuOpen ? <XIcon size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </header>
@@ -187,56 +159,19 @@ export default function Home() {
           </motion.button>
         </section>
 
-        {/* Uniform Grid - Hypesonic style Slider */}
+        {/* Large Hero Image */}
         <motion.div 
           initial={{ opacity: 0, y: 40, filter: "blur(8px)", scale: 0.98 }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="relative w-full mt-4 group/slider"
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="relative w-full mt-10 md:mt-14 h-[400px] md:h-[550px] lg:h-[650px] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-lg"
         >
-          <button 
-            onClick={scrollLeft}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white/80 backdrop-blur-md shadow-md p-3 rounded-full text-gray-800 opacity-0 group-hover/slider:opacity-100 transition-opacity disabled:opacity-0 hover:bg-white"
-          >
-            <span>{"‹"}</span>
-          </button>
-          
-          <button 
-            onClick={scrollRight}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white/80 backdrop-blur-md shadow-md p-3 rounded-full text-gray-800 opacity-0 group-hover/slider:opacity-100 transition-opacity disabled:opacity-0 hover:bg-white"
-          >
-            <span>{"›"}</span>
-          </button>
-
-          <section 
-            ref={sliderRef}
-            className="flex gap-4 w-full overflow-x-auto snap-x snap-mandatory pb-8 pt-4 px-2 md:px-4 cursor-grab active:cursor-grabbing [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
-          >
-            {[
-               { title: "258M children out of school", img: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800&auto=format&fit=crop" },
-             { title: "70% lack basic reading skills", img: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=800&auto=format&fit=crop" },
-             { title: "1 in 5 drop out globally", img: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop" },
-             { title: "67% illiterate are women", img: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=800&auto=format&fit=crop" },
-             { title: "69M teachers needed by 2030", img: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=800&auto=format&fit=crop" },
-          ].map((item, i) => (
-            <div 
-              key={i} 
-              className="snap-center w-[240px] md:w-[280px] lg:w-[300px] shrink-0 h-[300px] lg:h-[340px] rounded-3xl relative overflow-hidden group shadow-sm bg-gray-100 flex-col"
-            >
-              <img src={item.img} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-              <div className="absolute top-4 left-4 right-4 z-10 flex text-left">
-                <div className="bg-white/30 backdrop-blur-md rounded-full px-3 py-1.5 flex items-center gap-2 border border-white/30 shadow-sm">
-                  <div className="w-5 h-5 rounded-full bg-black/60 flex items-center justify-center">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                  </div>
-                  <span className="text-white text-[12px] font-medium tracking-wide truncate pr-2">{item.title}</span>
-                </div>
-              </div>
-              <div className="absolute inset-0 bg-black/10 pointer-events-none transition-colors group-hover:bg-transparent" />
-            </div>
-          ))}
-          </section>
+          <img 
+            src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2000&auto=format&fit=crop" 
+            alt="Children in classroom" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/5 pointer-events-none" />
         </motion.div>
 
         {/* About Us Section */}
@@ -276,12 +211,7 @@ export default function Home() {
               alt="Children learning in classroom" 
               className="w-full h-full object-cover" 
             />
-            {/* Play Button */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <button className="w-16 h-16 bg-[#111] rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-xl pointer-events-auto">
-                <span>{"▶"}</span>
-              </button>
-            </div>
+            
           </div>
 
         </motion.section>
@@ -390,6 +320,48 @@ export default function Home() {
           </div>
         </motion.section>
 
+        {/* Leadership Profile Section */}
+        <motion.section 
+          initial={{ opacity: 0, y: 40, filter: "blur(8px)", scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-24 md:mb-32 w-full max-w-7xl mx-auto px-4 md:px-0"
+        >
+          <div className="bg-white rounded-[2.5rem] p-8 md:p-12 lg:p-16 border border-gray-100 shadow-sm">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              <div className="flex flex-col items-start order-2 lg:order-1">
+                <div className="inline-flex items-center gap-2 bg-[#fdf5f4] border border-[#f3dcdb] px-3 py-1.5 rounded-full mb-6">
+                  <span className="text-[#eb5e43] text-[13px] font-semibold tracking-wide">Our Leadership</span>
+                </div>
+                <h2 className="text-[2.5rem] md:text-[3rem] leading-[1.1] font-serif font-normal tracking-[-0.035em] text-[#111] mb-6">
+                  Continuing the Legacy
+                </h2>
+                <div className="text-gray-600 font-sans text-[16px] md:text-[17px] leading-[1.8] space-y-5 mb-8">
+                  <p>
+                    Inspired by their parents&apos; extraordinary example, The AMAgada Foundation has been established by their children, who grew up witnessing these values in action. 
+                  </p>
+                  <p>
+                    They are committed to preserving and expanding this legacy by creating opportunities for children and young people to thrive through education, mentorship, quality healthcare, leadership development, and community empowerment.
+                  </p>
+                  <p className="font-medium text-gray-800">
+                    It is led by Dr. Frank Agada, an ENT Surgeon.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="relative order-1 lg:order-2 h-[400px] lg:h-[500px] w-full rounded-[2rem] overflow-hidden shadow-md">
+                <img 
+                  src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=1000&auto=format&fit=crop" 
+                  alt="Dr. Frank Agada - ENT Surgeon and Foundation Leader" 
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            </div>
+          </div>
+        </motion.section>
+
         {/* Donation Appeal Section */}
         <motion.section 
           initial={{ opacity: 0, y: 40, filter: "blur(8px)", scale: 0.98 }}
@@ -467,13 +439,13 @@ export default function Home() {
               <h4 className="font-serif text-[18px] text-[#111] mb-2 font-normal">Follow Us</h4>
               <div className="flex items-center gap-3">
                 <a href="#" className="w-11 h-11 rounded-full bg-[#fdf5f4] border border-[#f3dcdb]/60 flex items-center justify-center text-[#eb5e43] hover:bg-[#eb5e43] hover:text-white transition-colors group">
-                  <span>{"X"}</span>
+                  <Twitter size={18} />
                 </a>
                 <a href="#" className="w-11 h-11 rounded-full bg-[#fdf5f4] border border-[#f3dcdb]/60 flex items-center justify-center text-[#eb5e43] hover:bg-[#eb5e43] hover:text-white transition-colors group">
-                  <span>{"IG"}</span>
+                  <Instagram size={18} />
                 </a>
                 <a href="#" className="w-11 h-11 rounded-full bg-[#fdf5f4] border border-[#f3dcdb]/60 flex items-center justify-center text-[#eb5e43] hover:bg-[#eb5e43] hover:text-white transition-colors group">
-                  <span>{"LI"}</span>
+                  <Linkedin size={18} />
                 </a>
               </div>
             </div>
@@ -514,12 +486,12 @@ export default function Home() {
                 onClick={() => setIsVolunteerModalOpen(false)}
                 className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-800 hover:bg-gray-100 rounded-full transition-colors z-10"
               >
-                <span>{"✕"}</span>
+                <XIcon size={20} />
               </button>
               
               <div className="p-8 md:p-10">
                 <div className="inline-flex items-center gap-2 bg-[#fdf5f4] border border-[#f3dcdb] px-3 py-1.5 rounded-full mb-6">
-                  <span>{"♥"}</span>
+                  <Heart size={14} className="text-[#eb5e43] fill-[#eb5e43]" />
                   <span className="text-[#eb5e43] text-[13px] font-semibold tracking-wide">Join Our Mission</span>
                 </div>
                 <h3 className="font-serif text-3xl text-[#111] font-normal mb-3 leading-tight tracking-tight">Become a <br/>Volunteer</h3>
@@ -579,12 +551,12 @@ export default function Home() {
                 onClick={() => setIsDonateModalOpen(false)}
                 className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-800 hover:bg-gray-100 rounded-full transition-colors z-10"
               >
-                <span>{"✕"}</span>
+                <XIcon size={20} />
               </button>
               
               <div className="p-8 md:p-10">
                 <div className="inline-flex items-center gap-2 bg-[#fdf5f4] border border-[#f3dcdb] px-3 py-1.5 rounded-full mb-6">
-                  
+                  <Heart size={14} className="text-[#eb5e43] fill-[#eb5e43]" />
                   <span className="text-[#eb5e43] text-[13px] font-semibold tracking-wide">Make an Impact</span>
                 </div>
                                 <h3 className="font-serif text-3xl text-[#111] font-normal mb-3 leading-tight tracking-tight">How to donate</h3>
@@ -596,7 +568,7 @@ export default function Home() {
                   <div className="border border-gray-200 rounded-[1rem] p-5 hover:border-[#eb5e43]/30 transition-colors flex flex-col md:col-span-2">
                     <div className="flex flex-col gap-3 mb-auto">
                       <div className="w-10 h-10 rounded-full bg-[#fdf5f4] flex items-center justify-center text-[#eb5e43]">
-                        
+                        <Heart size={18} className="fill-[#eb5e43]" />
                       </div>
                       <div>
                         <h4 className="font-semibold text-[#111] text-[15px]">ABRAHAM ATTAH AND MARY AGADA FOUNDATION</h4>
@@ -614,7 +586,7 @@ export default function Home() {
                             onClick={() => handleCopy('2049080551', 'firstbank')}
                             className="w-10 h-10 flex-shrink-0 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:text-gray-800 hover:border-gray-300 transition-colors"
                           >
-                            {copiedBank === 'firstbank' ? <span>{"✓"}</span> : <span>{"Copy"}</span>}
+                            {copiedBank === 'firstbank' ? <Check size={16} /> : <Copy size={16} />}
                           </button>
                         </div>
                       </div>
@@ -638,7 +610,7 @@ export default function Home() {
                     exit={{ opacity: 0, y: 15, scale: 0.95 }}
                     className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-[#1f1f1f] text-white px-5 py-3 rounded-full text-[13px] font-medium shadow-xl flex items-center gap-2.5 z-20 pointer-events-none"
                   >
-                    <span>{"✓"}</span>
+                    <Check size={16} className="text-[#eb5e43]" />
                     Account details copied successfully
                   </motion.div>
                 )}
