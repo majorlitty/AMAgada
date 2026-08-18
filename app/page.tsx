@@ -33,6 +33,7 @@ export default function Home() {
   const [isVolunteerModalOpen, setIsVolunteerModalOpen] = useState(false);
   const [isDonateModalOpen, setIsDonateModalOpen] = useState(false);
   const [copiedBank, setCopiedBank] = useState<string | null>(null);
+  const [isLeadershipExpanded, setIsLeadershipExpanded] = useState(false);
   
   const handleCopy = (text: string, bank: string) => {
     navigator.clipboard.writeText(text);
@@ -207,7 +208,7 @@ export default function Home() {
           {/* Right Column */}
           <div className="relative w-full h-[450px] md:h-[550px] lg:h-[80%] lg:max-h-[700px] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-sm">
             <img 
-              src="https://images.unsplash.com/photo-1577896849786-738ed6c78bd3?q=80&w=1200&auto=format&fit=crop" 
+              src="/children-in-class1.jpg" 
               alt="Children learning in classroom" 
               className="w-full h-full object-cover" 
             />
@@ -251,7 +252,7 @@ export default function Home() {
             {/* Focus 2 */}
             <div className="relative group overflow-hidden rounded-[2rem] shadow-sm h-[320px] flex flex-col justify-end p-8 border border-gray-100/50 hover:border-[#f3dcdb] transition-all duration-300">
               <div className="absolute inset-0 w-full h-full">
-                <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=800&auto=format&fit=crop" alt="Leadership Mentoring" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
+                <img src="/mentorship.jpg" alt="Leadership Mentoring" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
               </div>
               <div className="relative z-10 text-white">
@@ -265,7 +266,7 @@ export default function Home() {
             {/* Focus 3 */}
             <div className="relative group overflow-hidden rounded-[2rem] shadow-sm h-[320px] flex flex-col justify-end p-8 border border-gray-100/50 hover:border-[#f3dcdb] transition-all duration-300">
               <div className="absolute inset-0 w-full h-full">
-                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=800&auto=format&fit=crop" alt="Social Intervention" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
+                <img src="/social intervention.jpg" alt="Social Intervention" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
               </div>
               <div className="relative z-10 text-white">
@@ -279,7 +280,7 @@ export default function Home() {
             {/* Focus 4 */}
             <div className="relative group overflow-hidden rounded-[2rem] shadow-sm h-[320px] flex flex-col justify-end p-8 border border-gray-100/50 hover:border-[#f3dcdb] transition-all duration-300">
               <div className="absolute inset-0 w-full h-full">
-                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=800&auto=format&fit=crop" alt="Community Health" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
+                <img src="/community health.jpg" alt="Community Health" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
               </div>
               <div className="relative z-10 text-white">
@@ -293,7 +294,7 @@ export default function Home() {
             {/* Focus 5 */}
             <div className="relative group overflow-hidden rounded-[2rem] shadow-sm h-[320px] flex flex-col justify-end p-8 border border-gray-100/50 hover:border-[#f3dcdb] transition-all duration-300">
               <div className="absolute inset-0 w-full h-full">
-                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop" alt="Skills & Livelihoods" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
+                <img src="/girlchild empowerment.jpg" alt="Skills & Livelihoods" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
               </div>
               <div className="relative z-10 text-white">
@@ -307,7 +308,7 @@ export default function Home() {
             {/* Focus 6 */}
             <div className="relative group overflow-hidden rounded-[2rem] shadow-sm h-[320px] flex flex-col justify-end p-8 border border-gray-100/50 hover:border-[#f3dcdb] transition-all duration-300">
               <div className="absolute inset-0 w-full h-full">
-                <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?q=80&w=800&auto=format&fit=crop" alt="Lasting Social Change" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
+                <img src="/social change.jpg" alt="Lasting Social Change" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
               </div>
               <div className="relative z-10 text-white">
@@ -344,15 +345,49 @@ export default function Home() {
                   <p>
                     They are committed to preserving and expanding this legacy by creating opportunities for children and young people to thrive through education, mentorship, quality healthcare, leadership development, and community empowerment.
                   </p>
-                  <p className="font-medium text-gray-800">
-                    It is led by Dr. Frank Agada, an ENT Surgeon.
-                  </p>
+                  <div className="font-medium text-gray-800 space-y-4">
+                    <p>
+                      The foundation is led by Dr Frank Agada a Consultant Head and Neck Surgeon at The Duchy Hospital in Harrogate. He is also currently a Consultant Otolaryngologist, Head and Neck Surgeon at York Teaching Hospital and Honorary Consultant to the Harrogate District Hospital.
+                    </p>
+                    
+                    <AnimatePresence initial={false}>
+                      {isLeadershipExpanded && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="space-y-4 overflow-hidden text-gray-600 font-normal"
+                        >
+                          <p>
+                            He holds an MBBS degree from Zaria and subsequently completed higher surgical training between 2004 and 2010 in Otolaryngology/Head and Neck Surgery in the Yorkshire Deanery. 
+                          </p>
+                          <p>
+                            Dr Agada undertook a travelling fellowship to John Hopkins, Baltimore USA, and New York Hospitals in Head and Neck Surgery and is currently a member of the Advisory Committee at The Duchy Hospital.
+                          </p>
+                          <p>
+                            He is committed to training the next generation of the specialists and is the College Tutor for ENT in York and, since 2012, has been a faculty member on the FRSCS Bradford course.
+                          </p>
+                          <p>
+                            Dr Agada has over 35 peer-review publications and has written chapters in four textbooks.
+                          </p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                    <button 
+                      onClick={() => setIsLeadershipExpanded(!isLeadershipExpanded)}
+                      className="text-[#eb5e43] font-semibold hover:text-[#d44d34] transition-colors mt-2 text-[15px]"
+                    >
+                      {isLeadershipExpanded ? "Read less" : "Read more"}
+                    </button>
+                  </div>
                 </div>
               </div>
               
               <div className="relative order-1 lg:order-2 h-[400px] lg:h-[500px] w-full rounded-[2rem] overflow-hidden shadow-md">
                 <img 
-                  src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=1000&auto=format&fit=crop" 
+                  src="/Dr Frank.png" 
                   alt="Dr. Frank Agada - ENT Surgeon and Foundation Leader" 
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"

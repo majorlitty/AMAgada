@@ -163,7 +163,7 @@ export default function OurStory() {
             <div className="lg:col-span-6">
               <div className="relative rounded-[1.5rem] overflow-hidden shadow-md h-[340px] md:h-[420px] group">
                 <img 
-                  src="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=1000&auto=format&fit=crop" 
+                  src="/baba and mama.png" 
                   alt="Educators mentoring young students" 
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -190,7 +190,7 @@ export default function OurStory() {
             <div className="lg:col-span-6 order-2 lg:order-1">
               <div className="relative rounded-[1.5rem] overflow-hidden shadow-md h-[340px] md:h-[420px] group">
                 <img 
-                  src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1000&auto=format&fit=crop" 
+                  src="/Team.jpg" 
                   alt="Students gathering together in school" 
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -209,7 +209,7 @@ export default function OurStory() {
                   Known affectionately as <strong>Teacher</strong>, Elder Agada dedicated his life to teaching, mentoring, and giving children a chance to succeed. 
                 </p>
                 <p>
-                  Together with Mary, he believed education should never be limited by a child’s background or financial circumstances. Long before they held leadership roles, they opened their home to eight children beyond their own, raising and educating them as family. To them, investing in children was investing in the future of the nation.
+                  Together with Mary, he believed education should never be limited by a child’s background or financial circumstances. Long before they held leadership roles, they opened their home to eight children and have fostered more than 30 other children beyond their own, raising and educating them as family. To them, investing in children was investing in the future of the nation.
                 </p>
               </div>
             </div>
@@ -244,7 +244,7 @@ export default function OurStory() {
             <div className="lg:col-span-6">
               <div className="relative rounded-[1.5rem] overflow-hidden shadow-md h-[360px] md:h-[460px] group">
                 <img 
-                  src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1000&auto=format&fit=crop" 
+                  src="/children-in-class-bw.jpg" 
                   alt="Classroom and public educational empowerment" 
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -271,7 +271,7 @@ export default function OurStory() {
             <div className="lg:col-span-6 order-2 lg:order-1">
               <div className="relative rounded-[1.5rem] overflow-hidden shadow-md h-[340px] md:h-[420px] group">
                 <img 
-                  src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=1000&auto=format&fit=crop" 
+                  src="/annie-spratt-feU8G7E5ODI-unsplash.jpg" 
                   alt="Young leaders learning and collaborating" 
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
