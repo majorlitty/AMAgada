@@ -45,7 +45,7 @@ export default function OurStory() {
         className={`px-6 md:px-12 py-5 flex items-center justify-between fixed top-0 left-0 w-full z-50 bg-[#fafafa]/90 backdrop-blur-md transition-transform duration-300 ease-in-out ${showNav || isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}
       >
                 <Link href="/" className="flex items-center text-gray-900 relative z-50 hover:opacity-80 transition-opacity">
-          <Image src="/amagada-logo.svg" alt="AMAgada Foundation" width={180} height={50} className="h-8 md:h-10 w-auto" referrerPolicy="no-referrer" />
+          <Image src="/Black and Red Charity Foundation Community Logo (1).svg" alt="AMAgada Foundation" width={320} height={110} className="h-14 md:h-20 w-auto" referrerPolicy="no-referrer" />
         </Link>
 
         <nav className="hidden lg:flex items-center justify-center flex-1">
@@ -271,7 +271,7 @@ export default function OurStory() {
             <div className="lg:col-span-6 order-2 lg:order-1">
               <div className="relative rounded-[1.5rem] overflow-hidden shadow-md h-[340px] md:h-[420px] group">
                 <img 
-                  src="/annie-spratt-feU8G7E5ODI-unsplash.jpg" 
+                  src="/joy international 2.png" 
                   alt="Young leaders learning and collaborating" 
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -360,7 +360,7 @@ export default function OurStory() {
           {/* Brand & Mission */}
           <div className="max-w-md">
             <Link href="/" className="font-serif text-2xl font-medium tracking-tight text-[#111] flex items-center gap-2 mb-6 hover:opacity-80 transition-opacity">
-              AMAgada Foundation
+              <Image src="/Black and Red Charity Foundation Community Logo (1).svg" alt="AMAgada Foundation" width={320} height={110} className="h-14 md:h-20 w-auto" referrerPolicy="no-referrer" />
             </Link>
             <p className="text-gray-500 font-sans text-[15.5px] leading-[1.7]">
               Preserving the educational legacy of Elder Abraham Attah Agada and Deaconess Mary Agada by empowering children and youth across Nigeria through education, healthcare, and mentorship.
