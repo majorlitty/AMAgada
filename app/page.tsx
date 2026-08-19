@@ -168,7 +168,7 @@ export default function Home() {
           className="relative w-full mt-10 md:mt-14 h-[400px] md:h-[550px] lg:h-[650px] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-lg"
         >
           <img 
-            src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2000&auto=format&fit=crop" 
+            src="/Hero image.avif" 
             alt="Children in classroom" 
             className="w-full h-full object-cover"
           />
@@ -208,7 +208,7 @@ export default function Home() {
           {/* Right Column */}
           <div className="relative w-full h-[450px] md:h-[550px] lg:h-[80%] lg:max-h-[700px] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-sm">
             <img 
-              src="/Joy international1.png" 
+              src="/Joy international comp.webp" 
               alt="Children learning in classroom" 
               className="w-full h-full object-cover" 
             />
@@ -252,7 +252,7 @@ export default function Home() {
             {/* Focus 2 */}
             <div className="relative group overflow-hidden rounded-[2rem] shadow-sm h-[320px] flex flex-col justify-end p-8 border border-gray-100/50 hover:border-[#f3dcdb] transition-all duration-300">
               <div className="absolute inset-0 w-full h-full">
-                <img src="/mentorship.jpg" alt="Leadership Mentoring" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
+                <img src="/mentorship2.webp" alt="Leadership Mentoring" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
               </div>
               <div className="relative z-10 text-white">
@@ -266,7 +266,7 @@ export default function Home() {
             {/* Focus 3 */}
             <div className="relative group overflow-hidden rounded-[2rem] shadow-sm h-[320px] flex flex-col justify-end p-8 border border-gray-100/50 hover:border-[#f3dcdb] transition-all duration-300">
               <div className="absolute inset-0 w-full h-full">
-                <img src="/social intervention.jpg" alt="Social Intervention" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
+                <img src="/social intervention2.webp" alt="Social Intervention" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
               </div>
               <div className="relative z-10 text-white">
@@ -294,7 +294,7 @@ export default function Home() {
             {/* Focus 5 */}
             <div className="relative group overflow-hidden rounded-[2rem] shadow-sm h-[320px] flex flex-col justify-end p-8 border border-gray-100/50 hover:border-[#f3dcdb] transition-all duration-300">
               <div className="absolute inset-0 w-full h-full">
-                <img src="/girlchild empowerment.jpg" alt="Skills & Livelihoods" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
+                <img src="/girlchild empowerment2.webp" alt="Skills & Livelihoods" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
               </div>
               <div className="relative z-10 text-white">
@@ -352,7 +352,7 @@ export default function Home() {
 
               {/* Portrait Image */}
               <img 
-                src="/Dr Frank.png" 
+                src="/Dr frank webp.webp" 
                 alt="Dr. Frank Agada - ENT Surgeon and Foundation Leader" 
                 className="w-full h-full object-cover object-top"
                 referrerPolicy="no-referrer"
