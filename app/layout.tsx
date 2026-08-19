@@ -5,12 +5,14 @@ import './globals.css'; // Global styles
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-sans',
+  display: 'swap',
 });
 
 const abril = Abril_Fatface({
   weight: '400',
   subsets: ['latin'],
   variable: '--font-serif',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
