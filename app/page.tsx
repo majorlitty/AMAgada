@@ -345,7 +345,7 @@ export default function Home() {
                   <p>
                     They are committed to preserving and expanding this legacy by creating opportunities for children and young people to thrive through education, mentorship, quality healthcare, leadership development, and community empowerment.
                   </p>
-                  <div className="font-medium text-gray-800 space-y-4">
+                  <div className="space-y-4">
                     <p>
                       The foundation is led by Dr Frank Agada a Consultant Head and Neck Surgeon at The Duchy Hospital in Harrogate. He is also currently a Consultant Otolaryngologist, Head and Neck Surgeon at York Teaching Hospital and Honorary Consultant to the Harrogate District Hospital.
                     </p>
