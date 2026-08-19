@@ -3,7 +3,7 @@ import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, animate, useInView, AnimatePresence } from "motion/react";
-import { Twitter, Instagram, Linkedin, Copy, Check, Menu, X as XIcon, Heart } from "lucide-react";
+import { Twitter, Instagram, Linkedin, Copy, Check, Menu, X as XIcon, Heart, Facebook } from "lucide-react";
 
 function AnimatedCounter({ from, to, duration = 2 }: { from: number, to: number, duration?: number }) {
   const nodeRef = useRef<HTMLSpanElement>(null);
@@ -327,71 +327,99 @@ export default function Home() {
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-24 md:mb-32 w-full max-w-7xl mx-auto px-4 md:px-0"
+          className="mb-24 md:mb-32 w-full max-w-6xl mx-auto px-4 md:px-6"
         >
-          <div className="bg-white rounded-[2.5rem] p-8 md:p-12 lg:p-16 border border-gray-100 shadow-sm">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              <div className="flex flex-col items-start order-2 lg:order-1">
-                <div className="inline-flex items-center gap-2 bg-[#fdf5f4] border border-[#f3dcdb] px-3 py-1.5 rounded-full mb-6">
-                  <span className="text-[#eb5e43] text-[13px] font-semibold tracking-wide">Our Leadership</span>
-                </div>
-                <h2 className="text-[2.5rem] md:text-[3rem] leading-[1.1] font-serif font-normal tracking-[-0.035em] text-[#111] mb-6">
-                  Continuing the Legacy
-                </h2>
-                <div className="text-gray-600 font-sans text-[16px] md:text-[17px] leading-[1.8] space-y-5 mb-8">
-                  <p>
-                    Inspired by their parents&apos; extraordinary example, The AMAgada Foundation has been established by their children, who grew up witnessing these values in action. 
-                  </p>
-                  <p>
-                    They are committed to preserving and expanding this legacy by creating opportunities for children and young people to thrive through education, mentorship, quality healthcare, leadership development, and community empowerment.
-                  </p>
-                  <div className="space-y-4">
-                    <p>
-                      The foundation is led by Dr Frank Agada a Consultant Head and Neck Surgeon at The Duchy Hospital in Harrogate. He is also currently a Consultant Otolaryngologist, Head and Neck Surgeon at York Teaching Hospital and Honorary Consultant to the Harrogate District Hospital.
-                    </p>
-                    
-                    <AnimatePresence initial={false}>
-                      {isLeadershipExpanded && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="space-y-4 overflow-hidden text-gray-600 font-normal"
-                        >
-                          <p>
-                            He holds an MBBS degree from Zaria and subsequently completed higher surgical training between 2004 and 2010 in Otolaryngology/Head and Neck Surgery in the Yorkshire Deanery. 
-                          </p>
-                          <p>
-                            Dr Agada undertook a travelling fellowship to John Hopkins, Baltimore USA, and New York Hospitals in Head and Neck Surgery and is currently a member of the Advisory Committee at The Duchy Hospital.
-                          </p>
-                          <p>
-                            He is committed to training the next generation of the specialists and is the College Tutor for ENT in York and, since 2012, has been a faculty member on the FRSCS Bradford course.
-                          </p>
-                          <p>
-                            Dr Agada has over 35 peer-review publications and has written chapters in four textbooks.
-                          </p>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+          {/* Top Centered Section Header */}
+          <div className="text-center max-w-3xl mx-auto mb-14 md:mb-16">
+            <h2 className="text-[2.25rem] md:text-[2.85rem] font-bold font-serif tracking-tight text-[#111] mb-4">
+              Meet Our Leadership
+            </h2>
+            <p className="text-gray-500 font-sans text-[15px] md:text-[16.5px] leading-[1.75]">
+              Inspired by their parents&apos; extraordinary example, The AMAgada Foundation was established by their children to preserve and expand this legacy through education, mentorship, quality healthcare, and community empowerment.
+            </p>
+          </div>
 
-                    <button 
-                      onClick={() => setIsLeadershipExpanded(!isLeadershipExpanded)}
-                      className="text-[#eb5e43] font-semibold hover:text-[#d44d34] transition-colors mt-2 text-[15px]"
-                    >
-                      {isLeadershipExpanded ? "Read less" : "Read more"}
-                    </button>
-                  </div>
-                </div>
+          {/* Leadership Card Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center bg-white rounded-[2rem] p-6 md:p-10 border border-gray-100/90 shadow-sm">
+            {/* Left Column: Portrait Card with badge */}
+            <div className="lg:col-span-5 relative w-full h-[460px] md:h-[520px] rounded-[1.75rem] overflow-hidden bg-[#e8f1f5] border border-[#d9e6ec]">
+              {/* Badge */}
+              <div className="absolute bottom-5 left-5 z-20 bg-white/95 backdrop-blur-md px-4 py-2 rounded-xl shadow-sm border border-gray-100">
+                <span className="text-[13px] font-semibold text-gray-800 tracking-wide">
+                  Chairman, Board of trustees
+                </span>
               </div>
-              
-              <div className="relative order-1 lg:order-2 h-[400px] lg:h-[500px] w-full rounded-[2rem] overflow-hidden shadow-md">
-                <img 
-                  src="/Dr Frank.png" 
-                  alt="Dr. Frank Agada - ENT Surgeon and Foundation Leader" 
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
-                />
+
+              {/* Portrait Image */}
+              <img 
+                src="/Dr Frank.png" 
+                alt="Dr. Frank Agada - ENT Surgeon and Foundation Leader" 
+                className="w-full h-full object-cover object-top"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+
+            {/* Right Column: Bio & Experience Paragraphs */}
+            <div className="lg:col-span-7 flex flex-col justify-center">
+              {/* Top Block: Name & Bio */}
+              <div>
+                <h3 className="text-2xl md:text-[1.85rem] font-bold text-[#111] tracking-tight mb-3">
+                  Dr, Frank Agada
+                </h3>
+                <p className="text-gray-600 font-sans text-[15px] md:text-[15.5px] leading-[1.75]">
+                  Dr Frank Agada brings a wealth of professional experience, leadership, and a deep commitment to education and community development to his role as Chairman of the Board of Trustees.
+                </p>
+              </div>
+
+              {/* Subtle Divider */}
+              <div className="w-full h-px bg-gray-100 my-6 md:my-7" />
+
+              {/* Bottom Block: Experience Details with Read More */}
+              <div>
+                <h4 className="text-lg md:text-[1.25rem] font-bold text-[#111] tracking-tight mb-3">
+                  Dr. Frank Agada Experience
+                </h4>
+                
+                <div className="text-gray-600 font-sans text-[15px] md:text-[15.5px] leading-[1.75] space-y-4">
+                  <p>
+                    He previously served as Chairman of the Board of Trustees of Hope Aid Organisation, a Nigerian NGO dedicated to promoting the legal rights of women and children, with a particular focus on educational and economic empowerment. He has also served on the panel of experts for Kings and Goodman and is a member of the Medical Advisory Committee of The Duchy Hospital, Harrogate.
+                  </p>
+
+                  <AnimatePresence initial={false}>
+                    {isLeadershipExpanded && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.35, ease: "easeInOut" }}
+                        className="space-y-4 overflow-hidden"
+                      >
+                        <p>
+                          Dr Agada undertook a travelling fellowship to Johns Hopkins, Baltimore USA, and New York Hospitals in Head and Neck Surgery and is currently a member of the Advisory Committee at The Duchy Hospital.
+                        </p>
+
+                        <p>
+                          He is committed to training the next generation of specialists and is the College Tutor for ENT in York and, since 2012, has been a faculty member on the FRCS Bradford course.
+                        </p>
+
+                        <p>
+                         Dr Agada is passionate about ensuring that children from underprivileged backgrounds have the opportunity to continue their education and build brighter futures. He is equally committed to addressing social and community challenges and believes that sustainable change is achieved by empowering individuals and strengthening communities.
+                         </p>
+
+                         <p>
+                        As Chairman of the Board of Trustees, Dr Agada provides strategic leadership and brings together his professional expertise, philanthropic experience, and enduring passion for education and social development in support of the Foundation's mission.
+                       </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  <button 
+                    onClick={() => setIsLeadershipExpanded(!isLeadershipExpanded)}
+                    className="inline-flex items-center text-[#eb5e43] font-semibold hover:text-[#d44d34] transition-colors text-[14.5px] cursor-pointer pt-1"
+                  >
+                    {isLeadershipExpanded ? "Read less" : "Read more"}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
