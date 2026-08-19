@@ -143,7 +143,7 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="text-gray-500 text-[15px] md:text-[1.05rem] max-w-2xl mx-auto leading-relaxed mb-6"
           >
-            The AMAgada Foundation was born out of a legacy of love, sacrifice, and an unwavering belief in the transformative power of education.
+            The Abraham and Mary Agada Foundation known as the AMAgada Foundation was born out of a legacy of love, sacrifice, and an unwavering belief in the transformative power of education.
           </motion.p>
           
           <motion.button 
