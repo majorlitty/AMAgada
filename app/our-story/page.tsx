@@ -163,7 +163,7 @@ export default function OurStory() {
             <div className="lg:col-span-6">
               <div className="relative rounded-[1.5rem] overflow-hidden shadow-md h-[340px] md:h-[420px] group">
                 <img 
-                  src="/baba and mama.png" 
+                  src="/baba and mama.webp" 
                   alt="Educators mentoring young students" 
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -244,7 +244,7 @@ export default function OurStory() {
             <div className="lg:col-span-6">
               <div className="relative rounded-[1.5rem] overflow-hidden shadow-md h-[360px] md:h-[460px] group">
                 <img 
-                  src="/children-in-class-bw.jpg" 
+                  src="/children in classbw (1).webp" 
                   alt="Classroom and public educational empowerment" 
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -271,7 +271,7 @@ export default function OurStory() {
             <div className="lg:col-span-6 order-2 lg:order-1">
               <div className="relative rounded-[1.5rem] overflow-hidden shadow-md h-[340px] md:h-[420px] group">
                 <img 
-                  src="/joy international 2.png" 
+                  src="/joy international 2.webp" 
                   alt="Young leaders learning and collaborating" 
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
