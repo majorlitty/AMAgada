@@ -167,10 +167,14 @@ export default function Home() {
           transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="relative w-full mt-10 md:mt-14 h-[400px] md:h-[550px] lg:h-[650px] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-lg"
         >
-          <img 
+          <Image 
             src="/Hero image.avif" 
             alt="Children in classroom" 
-            className="w-full h-full object-cover"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+            referrerPolicy="no-referrer"
           />
           <div className="absolute inset-0 bg-black/5 pointer-events-none" />
         </motion.div>
