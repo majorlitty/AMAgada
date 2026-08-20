@@ -234,7 +234,7 @@ export default function OurStory() {
                   Their influence reached far beyond their home, transforming the lives of children across Plateau, Benue, Kogi, and beyond.
                 </p>
                 <p>
-                  Through school fees, mentorship, encouragement, and opportunity, they helped countless young people become professionals and leaders who continue to shape society. 
+                  Through housing several children in their family home during their sojourn in several cities and towns in Nigeria, paying school fees for many children,, mentorship, encouragement, and opportunity, they helped countless young people become professionals and leaders who continue to shape society. 
                   </p>
                   <p> 
                   As Directors of Education in Government, Elder A. A. Agada and Mary Agada carried the same values into public service—integrity, excellence, compassion, and an unwavering commitment to developing people.
@@ -310,7 +310,7 @@ export default function OurStory() {
         >
           <div className="max-w-3xl mx-auto text-center space-y-8 relative z-10">
             <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-1.5 rounded-full">
-              <span>{"\""}</span>
+              
               <span className="text-white text-[13px] font-medium tracking-wide">Our Vision & Call to Action</span>
             </div>
 
